@@ -1,0 +1,56 @@
+@import "../utilities/mediaQueries";
+
+.carrito {
+    @include tablet {
+        height: 50rem;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    @include desktop {
+        height: 60rem;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .col-lg-4 {
+        @include desktop {
+            width: 45rem;
+        }
+    }
+    .border-img {
+        border-radius: 19px;
+    }
+    .position {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+    .casillero {
+        border-radius: 14px;
+        height: 40px;
+        width: 110px;
+    }
+    .botonesCarrito {
+        @include tablet {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+    .botonCarrito {
+        background-color: #F97C7C;
+        border-radius: 44px;
+        color: white;
+        font-size: 1.5rem;
+        transition: all 1s;
+        @include tablet {
+            width: 30rem;
+        }
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    .linkBoton {
+        text-decoration: none;
+        color: white;
+        font-size: 1.5rem;
+    }
+}
