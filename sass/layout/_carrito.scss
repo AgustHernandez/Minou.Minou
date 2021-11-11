@@ -7,7 +7,7 @@
         padding-right: 0;
     }
     @include desktop {
-        height: 60rem;
+        height: 100rem;
         padding-left: 0;
         padding-right: 0;
     }
@@ -16,26 +16,119 @@
             width: 45rem;
         }
     }
-    .border-img {
-        border-radius: 19px;
-    }
-    .position {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-    }
-    .casillero {
-        border-radius: 14px;
-        height: 40px;
-        width: 110px;
-    }
-    .botonesCarrito {
-        @include tablet {
-            display: flex;
-            flex-direction: row;
+    .table {
+        margin-bottom: 0;
+        border: 0 solid transparent;
+        .thead {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1.4;
+            line-height: 30px;
+            .tableProduct {
+                text-align: start;
+                width: auto;
+            }
+        }
+        .tableImg {
+            width: 50px;
+            padding: 15px 10px 15px 5px;
+            .imgCarrito {
+                width: 12rem;
+                height: 12rem;
+                border-radius: 19px;
+            }
+        }
+        .tableDetalle {
+            font-size: 1.2rem;
+            width: 115px;
+            vertical-align: middle;
+            letter-spacing: 2;
+            padding: 15px 10px 15px 5px;
+        }
+        .tableCantidad {
+            padding: 15px 5px 15px 5px;
+            vertical-align: middle;
+            font-size: 1.2rem;
+        }
+        .tablePrecio {
+            padding: 15px 5px 15px 5px;
+            vertical-align: middle;
+            font-size: 1.2rem;
+        }
+        .tableSubtotal {
+            vertical-align: middle;
+            font-size: 1.2rem;
+            padding: 15px 5px 15px 5px;
+        }
+        .tableTrash {
+            vertical-align: middle;
+            width: 50px;
+            padding: 15px 5px 15px 10px;
+            .buttonTrash {
+                border: 0;
+                background-color: transparent;
+            }
         }
     }
+    .imgCamion {
+        width: 40px;
+    }
+    .textDomicilio {
+        vertical-align: auto;
+    }
+    .envios {
+        height: 120px;
+        width: 350px;
+        padding-left: 20px;
+        box-sizing: border-box;
+        border: 1px solid black;
+        border-radius: 20px;
+        .listEnvios {
+            margin-right: 0px;
+            margin: 10px 0px 10px 0px;
+            .form-check-input {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+            .form-check-label {
+                width: 180px;
+                padding-left: 10px;
+            }
+            .precioEnvio {
+                width: 80px;
+                font-weight: 700;
+                left: 260px;
+                top: 5px;
+                .textPrecio {
+                    font-size: 1.8rem;
+                }
+            }
+        }
+    }
+    .containerTotal {
+        width: 400px;
+        left: 915px;
+        top: 900px;
+    }
+    .textTotal {
+        font-size: 2rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .total {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+    }
+
     .botonCarrito {
+        width: 400px;
+        left: 915px;
+        top: 950px;
+    }
+    .btnCarrito {
+        width: 100px;
         background-color: #F97C7C;
         border-radius: 44px;
         color: white;
