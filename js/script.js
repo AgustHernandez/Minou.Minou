@@ -1,82 +1,9 @@
-/*let precioUnitario = 900
-let cantProducto = 2
-let IVA = calculoIVA(precioUnitario * cantProducto)
-let subtotalProd = sumaSubtotal(cantProducto, precioUnitario)*
-
-let provincia = "CABA"
-let tiempoEntrega = 24
-let costoDeEnvio = costoEnvio(subtotalProd, provincia, tiempoEntrega)
-
-function calculoIVA(producto) {
-    const IVA = 0.21
-    return producto * IVA
-}
-
-function sumaSubtotal (cantProducto, precioUnitario) {
-    let subtotalSinIVA = cantProducto * precioUnitario
-    return subtotalSinIVA + calculoIVA(subtotalSinIVA)
-}
-
-function costoEnvio (costoProducto, provincia, tiempoEntrega) {
-    return costoSubtotal(costoProducto) + costoDistancia(provincia) + costoTiempoEntrega(tiempoEntrega, provincia)
-}
-
-function costoDistancia (provincia) {
-    if (provincia === "CABA") {
-        return 0
-    }
-    else {
-        return 200
-    }
-}
-
-function costoTiempoEntrega(tiempoEntrega, provincia) {
-    if (provincia === "CABA") {
-        return 0
-    }
-    if (tiempoEntrega === 24) {
-        return 500
-    }
-    else {
-        return 200
-    }
-}
-
-function costoSubtotal(costoProducto) {
-    if (costoProducto < 1000) {
-        return 300
-    }
-    if (costoProducto >= 1000 && costoProducto < 5000) {
-        return 200
-    }
-    if (costoProducto >= 5000) {
-        return 0
-    }
-}
-
-function cargarSubtotales()
-{
-    
-    let table = document.getElementById("tabla")
-    for(var i = 1,row; row = table.rows[i];i++)
-    {
-        let subtotalLinea = table.rows[i].cells[2].textContent.replace("$","").trim() * table.rows[1].cells[3].textContent.replace("$","").trim()
-        let ivaLinea = calculoIVA(subtotalLinea)
-
-        table.rows[i].cells[4].textContent = "$ "+ ivaLinea
-
-        table.rows[i].cells[5].textContent = "$ " + (subtotalLinea + ivaLinea)
-    }
-}
-
-console.log(sumaSubtotal(producto1,calculoIVA(producto1)))*/
-
 let carritoCompra = new carrito()
 let taza = new producto("Taza", 900, 5)
 let cesto = new producto("Cesto", 1200, 2)
 let macetero = new producto("Macetero", 1500, 4)
-let buzoMascotas = new producto("Buzo", 1000, 8)
-let camaMascotas = new producto("Cama", 1900, 1)
+let buzoMascotas = new producto("Buzo Mascotas", 1000, 8)
+let camaMascotas = new producto("Cama Mascotas", 1900, 1)
 
 //Productos que hay en stock
 let productosStock = []
@@ -94,10 +21,10 @@ while(continuar.toUpperCase() != "Y" && continuar.toUpperCase() != "N") {
 
 while (continuar.toUpperCase() == "Y") 
 {
-    let compra = prompt("Que producto quiere comprar? (Taza / Cesto / Macetero /Buzo Mascotas / Cama Mascotas)")
+    let compra = prompt("Que producto quiere comprar? (Taza / Cesto / Macetero / Buzo Mascotas / Cama Mascotas)")
     while(compra != productosStock[0].nombre && compra != productosStock[1].nombre && compra != productosStock[2].nombre && compra != productosStock[3].nombre && compra != productosStock[4].nombre) {
         alert("Por favor ingrese un producto válido")
-        compra = prompt("Que producto quiere comprar? (Taza / Cesto / Macetero /Buzo Mascotas / Cama Mascotas)")
+        compra = prompt("Que producto quiere comprar? (Taza / Cesto / Macetero / Buzo Mascotas / Cama Mascotas)")
     }
     let posicionProducto = -1
     if (compra == productosStock[0].nombre) {
@@ -196,3 +123,18 @@ function costoSubtotal(costoProducto) {
         return 0
     }
 }
+
+/*function cargarSubtotales()
+{
+    
+    let table = document.getElementById("tabla")
+    for(var i = 1,row; row = table.rows[i];i++)
+    {
+        let subtotalLinea = table.rows[i].cells[2].textContent.replace("$","").trim() * table.rows[1].cells[3].textContent.replace("$","").trim()
+        let ivaLinea = producto.valorIVA()
+
+        table.rows[i].cells[4].textContent = "$ "+ ivaLinea
+
+        table.rows[i].cells[5].textContent = "$ " + (subtotalLinea + ivaLinea)
+    }
+}*/
