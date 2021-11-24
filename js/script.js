@@ -5,13 +5,6 @@ let articleProductos = document.getElementById('articleProductos')
 let formProducto = document.getElementById('formProducto')
 let compraProd = []
 
-formProducto.addEventListener("submit", (e) => {
-    e.preventDefault()
-    console.log(e.target)
-    let cantidad = document.getElementById('cantidad').value
-    console.log(cantidad)
-})
-
 function imprimirProductos(desde, hasta) {
     inventario.slice(desde, hasta).forEach((producto, indice) => {
         articleProductos.innerHTML += `
@@ -32,6 +25,12 @@ function imprimirProductos(desde, hasta) {
 
 imprimirProductos(0, 6)
 
+/*formProducto.addEventListener("submit", (e) => {
+    e.preventDefault()
+    console.log(e.target)
+    let cantidad = document.getElementById('cantidad').value
+    console.log(cantidad)
+})
 
 /*function cargarProdCarrito() {
     inventario.forEach((producto, indice) => {
@@ -120,20 +119,6 @@ while (continuar.toUpperCase() == "Y")
     let producto = prompt("Que producto quiere comprar?")
 
 }*/
-
-let carritoCompra = new Carrito()
-
-let inventario = obtenerInventario()
-let articleProductos = document.getElementById('articleProductos')
-let formProducto = document.getElementById('formProducto')
-let compraProd = []
-
-formProducto.addEventListener("submit", (e) => {
-    e.preventDefault()
-    console.log(e.target)
-    let cantidad = document.getElementById('cantidad').value
-    console.log(cantidad)
-})
 
 /*function imprimirProductos(desde, hasta) {
     inventario.slice(desde, hasta).forEach((producto, indice) => {
