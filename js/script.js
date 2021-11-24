@@ -3,34 +3,44 @@ let carritoCompra = new Carrito()
 let inventario = obtenerInventario()
 let articleProductos = document.getElementById('articleProductos')
 let formProducto = document.getElementById('formProducto')
-let compraProd = []
-
-function imprimirProductos(desde, hasta) {
-    inventario.slice(desde, hasta).forEach((producto, indice) => {
-        articleProductos.innerHTML += `
-        <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
-            <div class="card text-center bg-transparent">
-                <div>
-                    <a href="../vistas/${producto.nombreHTML}.html"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
-                </div>
-                <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
-                    <h4 class="card-title fs-3">${producto.nombre}</h4>
-                    <p class="card-text fs-4">$ ${producto.precio}</p>
-                </div>
-            </div>
-        </article>
-        `
-    })
-}
+let cantidadProducto = document.getElementById('cantidad')
+let precioProducto = document.getElementById('precioProducto')
 
 imprimirProductos(0, 6)
 
+cantidadProducto.addEventListener("change", () => {
+    let nombreProducto = document.getElementById('tituloProducto').textContent
+    let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
+    let cantidad = parseInt(document.getElementById('cantidad').value)
+    document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
+})
+
+function imprimirProductos(desde, hasta) {
+    inventario.slice(desde, hasta).forEach((producto, indice) => {
+        if (articleProductos != null) {
+            articleProductos.innerHTML += `
+                <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
+                    <div class="card text-center bg-transparent">
+                        <div>
+                            <a href="../vistas/${producto.nombreHTML}.html"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
+                        </div>
+                        <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
+                            <h4 class="card-title fs-3">${producto.nombre}</h4>
+                            <p class="card-text fs-4">$ ${producto.precio}</p>
+                        </div>
+                    </div>
+                </article>
+            `
+        }
+    })
+}
+
 /*formProducto.addEventListener("submit", (e) => {
     e.preventDefault()
-    console.log(e.target)
     let cantidad = document.getElementById('cantidad').value
-    console.log(cantidad)
-})
+    let precio = document.getElementById('precioProducto').value
+    document.getElementById('precioProducto').value = cantidad * precio
+})*/
 
 /*function cargarProdCarrito() {
     inventario.forEach((producto, indice) => {
