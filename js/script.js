@@ -1,14 +1,12 @@
 let carritoCompra = new Carrito()
 
 let inventario = obtenerInventario()
-let articleProductosIndex = document.getElementById('articleProductosIndex')
 let articleProductos = document.getElementById('articleProductos')
 let formProducto = document.getElementById('formProducto')
 let cantidadProducto = document.getElementById('cantidad')
 let precioProducto = document.getElementById('precioProducto')
 
-imprimirProductosIndex(0, 6)
-imprimirProductos(0, 9)
+imprimirProductos(0, 6)
 
 cantidadProducto.addEventListener("change", () => {
     let nombreProducto = document.getElementById('tituloProducto').textContent
@@ -16,27 +14,6 @@ cantidadProducto.addEventListener("change", () => {
     let cantidad = parseInt(document.getElementById('cantidad').value)
     document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
 })
-
-
-function imprimirProductosIndex(desde, hasta) {
-    inventario.slice(desde, hasta).forEach((producto, indice) => {
-        if (articleProductosIndex != null) {
-            articleProductosIndex.innerHTML += `
-                <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
-                    <div class="card text-center bg-transparent">
-                        <div>
-                            <a href="../vistas/${producto.nombreHTML}.html"><img class="card-img-top cardImgBorder" src="assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
-                        </div>
-                        <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
-                            <h4 class="card-title fs-3">${producto.nombre}</h4>
-                            <p class="card-text fs-4">$ ${producto.precio}</p>
-                        </div>
-                    </div>
-                </article>
-            `
-        }
-    })
-}
 
 function imprimirProductos(desde, hasta) {
     inventario.slice(desde, hasta).forEach((producto, indice) => {
