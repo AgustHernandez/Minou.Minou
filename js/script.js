@@ -15,6 +15,8 @@ cantidadProducto.addEventListener("change", () => {
     document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
 })
 
+
+
 function imprimirProductos(desde, hasta) {
     inventario.slice(desde, hasta).forEach((producto, indice) => {
         if (articleProductos != null) {
