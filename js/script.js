@@ -16,7 +16,6 @@ cantidadProducto.addEventListener("change", () => {
 })
 
 
-
 function imprimirProductos(desde, hasta) {
     inventario.slice(desde, hasta).forEach((producto, indice) => {
         if (articleProductos != null) {
