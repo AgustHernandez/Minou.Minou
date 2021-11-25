@@ -23,7 +23,7 @@ function imprimirProductos(desde, hasta) {
                 <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
                     <div class="card text-center bg-transparent">
                         <div>
-                            <a href="../vistas/${producto.nombreHTML}.html"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
+                            <a href="../vistas/${producto.nombreHTML}.html"><img class="card-img-top cardImgBorder" src="C:\Users\Tini Hernandez\Desktop\minou.minou OK\Minou.Minou - Final\assets\${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
                         </div>
                         <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
                             <h4 class="card-title fs-3">${producto.nombre}</h4>
