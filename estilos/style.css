@@ -140,11 +140,11 @@ body {
   font-weight: 400;
   font-size: 1.8rem; }
 
-.page-item {
-  font-size: 1.8rem; }
-  .page-item .page-link {
-    color: black;
-    border: none; }
+.botonItem {
+  font-size: 1.5rem;
+  margin-right: 10px;
+  border: none;
+  background-color: transparent; }
 
 /* PRODUCTO */
 @media screen and (min-width: 768px) {

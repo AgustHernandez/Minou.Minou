@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="productos1.html" aria-current="page">PRODUCTOS</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="productos.html" aria-current="page">PRODUCTOS</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="nosotros.html">NOSOTROS</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="404.html">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="contacto.html">CONTACTO</a></li>
@@ -41,14 +41,16 @@
             <section class="row align-items-center justify-content-center mt-5 prod">
                 <nav class="breadcrumb-divider" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="productos1.html">Productos</a></li>
+                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="productos.html">Productos</a></li>
                         <li class="breadcrumb-item active breadcrumb-size" aria-current="page">Taza de Ceramica</li>
                     </ol>
                 </nav>
-                <article class="col-lg-4 col-md-6 col-sm-4">
-                    <div class="position-relative hiddenProduct">
-                        <div>
-                            <img src="../assets/tazaGris.jpg" class="d-block w-100 border-img position-relative imgProducto" alt="Taza de Ceramica">
+                <section id="pagProducto">
+                    <!--<article class="col-lg-4 col-md-6 col-sm-4">
+                        <div class="position-relative hiddenProduct">
+                            <div>
+                                <img src="../assets/tazaGris.jpg" class="d-block w-100 border-img position-relative imgProducto" alt="Taza de Ceramica">
+                            </div>
                         </div>
                         <div class="text-center OverProducto">
                             <div class="textProducto">
@@ -56,38 +58,37 @@
                                 <p class="fs-5">Vienen en gris, amarillo, blanco y negro. El diseño es personalizable.</p>
                             </div>
                         </div>
-                    </div>
-                </article>
-                <article class="col-lg-4 col-md-6 col-sm-3 mb-5">
-                    <div>
-                        <h4 class="display-4 m-5 text-center" id="tituloProducto">Taza de Ceramica</h4>
-                        <p class="text-center m-5 fs-3 lh-base">Diseño personalizable</p>
-                    </div>
-                    <div class="text-center gy-5">
-                        <form action="#" method="#" id="formProducto">
-                            <div class="row mb-3 position">
-                                <label class="fs-4" for="cantidad">Cantidad:</label>
-                                <select class="form-select fs-4 text-center w-sm-100 position casillero" name="cantidad" id="cantidad">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-                            <div class="row mb-3 position">
-                                <label class="form-label fs-4" for="color">Color:</label>
-                                <select class="form-select fs-4 text-center w-sm-100 position casillero" name="color" id="color">
-                                    <option value="gris">Gris</option>
-                                    <option value="amarillo">Amarillo</option>
-                                    <option value="blanco">Blanco</option>
-                                    <option value="negro">Negro</option>
-                                </select>
-                            </div>
-                            <div class="d-inline-flex p-3 justify-content-center align-items-center w-100 gx mt-3">
-                                <p class="fs-1 wdth text-center lh-base" id="precioProducto">$ 900</p>
-                                <a class="btn btnProducto btn-lg m-3 linkProducto" href="carritoCompra1.html"><button type="submit" class="buttonComprar">Comprar</button></a>
-                            </div>
-                        </form>
-                    </div>
+                    </article>
+                    <article class="col-lg-4 col-md-6 col-sm-3 mb-5">
+                        <div>
+                            <h4 class="display-4 m-5 text-center" id="tituloProducto">Taza de Ceramica</h4>
+                            <p class="text-center m-5 fs-3 lh-base">Diseño personalizable</p>
+                        </div>
+                        <div class="text-center gy-5">
+                            <form action="#" method="#" id="formProducto">
+                                <div class="row mb-3 position">
+                                    <label class="fs-4" for="cantidad">Cantidad:</label>
+                                    <select class="form-select fs-4 text-center w-sm-100 position casillero" name="cantidad" id="cantidad">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                                <div class="row mb-3 position">
+                                    <label class="form-label fs-4" for="color">Color:</label>
+                                    <select class="form-select fs-4 text-center w-sm-100 position casillero" name="color" id="color">
+                                        <option value="gris">Gris</option>
+                                        <option value="amarillo">Amarillo</option>
+                                        <option value="blanco">Blanco</option>
+                                        <option value="negro">Negro</option>
+                                    </select>
+                                </div>
+                                <div class="d-inline-flex p-3 justify-content-center align-items-center w-100 gx mt-3">
+                                    <p class="fs-1 wdth text-center lh-base" id="precioProducto">$ 900</p>
+                                    <a class="btn btnProducto btn-lg m-3 linkProducto" href="carritoCompra1.html"><button class="buttonComprar">Comprar</button></a>
+                                </div>
+                            </form>
+                        </div>-->
                     <div class="d-inline-flex p-3 justify-content-center align-items-center w-100 gx-5">
                         <div class="text-center wdth">
                             <div class="mb-3">
@@ -105,8 +106,8 @@
                             </div>
                             <p class="fs-5">Envíos y <br> devoluciones</p>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                </section>
             </section>
         </section>
         <section class="container-lg">
@@ -150,7 +151,7 @@
                     <nav class="navbar navbar-dark justify-content-center align-self-center mt-3">
                         <ul class="navbar-nav align-items-center">
                             <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="productos1.html">Productos</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="productos.html">Productos</a></li>
                             <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
                             <li class="nav-item"><a class="nav-link" href="404.html">FAQ</a></li>
                             <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>

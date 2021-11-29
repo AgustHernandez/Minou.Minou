@@ -2,27 +2,105 @@ let carritoCompra = new Carrito()
 
 let inventario = obtenerInventario()
 let articleProductos = document.getElementById('articleProductos')
+let sectionProductos = document.getElementById('sectionProductos')
+let pageAnt = document.getElementById('pageAnt')
+let page1 = document.getElementById('page1')
+let pageSig = document.getElementById('pageSig')
+let page2 = document.getElementById('page2')
+let pagProducto = document.getElementById('pagProducto')
+//let elegirProducto = document.getElementById('inventario${indice}')
+let botonComprar = document.getElementById('botonComprar')
 let formProducto = document.getElementById('formProducto')
 let cantidadProducto = document.getElementById('cantidad')
 let precioProducto = document.getElementById('precioProducto')
 
-imprimirProductos(0, 6)
 
-cantidadProducto.addEventListener("change", () => {
-    let nombreProducto = document.getElementById('tituloProducto').textContent
-    let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
-    let cantidad = parseInt(document.getElementById('cantidad').value)
-    document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
-})
+if(window.location.href.includes("index.html"))
+{
+    imprimirProductosIndex(0, 6)
+}
 
-function imprimirProductos(desde, hasta) {
+if( window.location.href.includes("productos.html"))
+{
+    imprimirProductos(0, 6)
+    pageAnt.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(0, 6)
+    })
+    page1.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(0, 6)
+    })
+    pageSig.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(7, 9)
+    })
+    page2.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(7, 9)
+    })
+}
+
+
+/*elegirProducto.addEventListener("click", () => {
+    inventario.forEach((producto, indice) {
+        pagProducto.innerHTML += `
+            <article class="col-lg-4 col-md-6 col-sm-4" id="inventario${indice}">
+                <div class="position-relative hiddenProduct">
+                    <div>
+                        <img src="../assets/${producto.nombreImg}.jpg" class="d-block w-100 border-img position-relative imgProducto" alt="${producto.nombre}">
+                    </div>
+                </div>
+                <div class="text-center OverProducto">
+                    <div class="textProducto">
+                        <h5 class="display-5">${producto.nombre}</h5>
+                        <p class="fs-5">Vienen en gris, amarillo, blanco y negro. El diseño es personalizable.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="col-lg-4 col-md-6 col-sm-3 mb-5">
+                <div>
+                    <h4 class="display-4 m-5 text-center" id="tituloProducto">${producto.nombre}</h4>
+                    <p class="text-center m-5 fs-3 lh-base">Diseño personalizable</p>
+                </div>
+                <div class="text-center gy-5">
+                    <form action="#" method="#" id="formProducto">
+                        <div class="row mb-3 position">
+                            <label class="fs-4" for="cantidad">Cantidad:</label>
+                            <select class="form-select fs-4 text-center w-sm-100 position casillero" name="cantidad" id="cantidad">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                        <div class="row mb-3 position">
+                            <label class="form-label fs-4" for="color">Color:</label>
+                            <select class="form-select fs-4 text-center w-sm-100 position casillero" name="color" id="color">
+                                <option value="gris">Gris</option>
+                                <option value="amarillo">Amarillo</option>
+                                <option value="blanco">Blanco</option>
+                                <option value="negro">Negro</option>
+                            </select>
+                        </div>
+                        <div class="d-inline-flex p-3   justify-content-center align-items-center w-100 gx mt-3">
+                            <p class="fs-1 wdth text-center lh-base" id="precioProducto">$ ${producto.precio} 900</p>
+                            <button class="btn btnProducto btn-lg buttonComprar m-3 id="botonComprar${indice}">Comprar</button>
+                        </div>
+                    </form>
+                </div>
+            </article>
+        `
+    }
+)})*/
+
+function imprimirProductosIndex(desde, hasta) {
     inventario.slice(desde, hasta).forEach((producto, indice) => {
         if (articleProductos != null) {
             articleProductos.innerHTML += `
                 <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
                     <div class="card text-center bg-transparent">
                         <div>
-                            <a href="../vistas/${producto.nombreHTML}.html"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
+                            <a href="./vistas/${producto.nombreHTML}.html"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
                         </div>
                         <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
                             <h4 class="card-title fs-3">${producto.nombre}</h4>
@@ -34,6 +112,41 @@ function imprimirProductos(desde, hasta) {
         }
     })
 }
+
+function limpiarProductos() {
+    sectionProductos.innerHTML = ""
+}
+
+function imprimirProductos(desde, hasta) {
+    inventario.slice(desde, hasta).forEach((producto, indice) => {
+        if (sectionProductos != null) {
+            sectionProductos.innerHTML += `
+                <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
+                    <div class="card text-center bg-transparent">
+                        <div>
+                            <a href="../vistas/${producto.nombreHTML}.html" id="elegirProducto"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
+                        </div>
+                        <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
+                            <h4 class="card-title fs-3">${producto.nombre}</h4>
+                            <p class="card-text fs-4">$ ${producto.precio}</p>
+                        </div>
+                    </div>
+                </article>
+            `
+        }
+    })
+}
+
+cantidadProducto.addEventListener("change", () => {
+    if (cantidadProducto != null) {
+        let nombreProducto = document.getElementById('tituloProducto').textContent
+        let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
+        let cantidad = parseInt(document.getElementById('cantidad').value)
+        document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
+    }
+})
+
+
 
 /*formProducto.addEventListener("submit", (e) => {
     e.preventDefault()
