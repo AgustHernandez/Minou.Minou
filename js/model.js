@@ -1,5 +1,6 @@
 class Producto {
-    constructor (nombre, precio, stock, nombreImg, nombreHTML) {
+    constructor (code,nombre, precio, stock, nombreImg, nombreHTML) {
+        this.code = code;
         this.nombre = nombre;
         this.precio = parseInt(precio);
         this.stock = stock;

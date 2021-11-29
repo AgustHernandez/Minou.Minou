@@ -201,8 +201,10 @@ body {
     color: white; }
 
 .buttonComprar {
-  background-color: transparent;
-  border: none; }
+  background-color: #F97C7C;
+  border-radius: 44px;
+  transition: all 1s;
+  color: white; }
 
 .cardsProductos {
   gap: 8rem; }
