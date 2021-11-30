@@ -194,16 +194,13 @@ body {
   background-color: #F97C7C;
   border-radius: 30px;
   font-size: 1.8rem;
-  color: white;
-  width: 11rem; }
+  width: 20rem; }
   .btnProducto .linkProducto {
-    text-decoration: none;
-    color: white; }
+    text-decoration: none; }
 
 .buttonComprar {
-  background-color: #F97C7C;
-  border-radius: 44px;
-  transition: all 1s;
+  background-color: transparent;
+  border: none;
   color: white; }
 
 .cardsProductos {
