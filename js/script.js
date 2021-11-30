@@ -9,21 +9,19 @@ let pageAnt = document.getElementById('pageAnt')
 let page1 = document.getElementById('page1')
 let pageSig = document.getElementById('pageSig')
 let page2 = document.getElementById('page2')
-let pagProducto = document.getElementById('pagProducto')
-//let elegirProducto = document.getElementById('inventario${indice}')
+let navProducto = document.getElementById('navProducto')
+let sectionProd = document.getElementById('pagProducto')
 let botonComprar = document.getElementById('botonComprar')
 let formProducto = document.getElementById('formProducto')
-let cantidadProducto = document.getElementById('cantidad')
 let precioProducto = document.getElementById('precioProducto')
+let navCarrito = document.getElementById('navCarrito')
+let modalCarrito = document.getElementById('modalCarrito')
 
-
-if(window.location.href.includes("index.html"))
-{
+if( window.location.href.includes("index.html")) {
     imprimirProductosIndex(0, 6)
 }
 
-if( window.location.href.includes("productos.html"))
-{
+if( window.location.href.includes("productos.html")) {
     imprimirProductos(0, 6)
     pageAnt.addEventListener("click", () => {
         limpiarProductos()
@@ -39,16 +37,24 @@ if( window.location.href.includes("productos.html"))
     })
     page2.addEventListener("click", () => {
         limpiarProductos()
-        imprimirProductos(7, 9)
+        imprimirProductos(6, 8)
     })
 }
 
-if( window.location.href.includes("producto.html"))
-{
+if( window.location.href.includes("producto.html")) {
     let url = new URL(window.location.href);
     let id = url.searchParams.get("id");
     producto = inventario.filter(p => p.code == id)[0]
     imprimirProducto(producto)
+
+    document.getElementById('cantidad').addEventListener("change", () => {
+        let nombreProducto = document.getElementById('tituloProducto').textContent
+        let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
+        let cantidad = parseInt(document.getElementById('cantidad').value)
+        document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
+    })
+
+    breadcrumbProd(producto)
 }
 
 function imprimirProducto(producto, indice)
@@ -118,58 +124,19 @@ function imprimirProducto(producto, indice)
             </article>
         </article>
         `
+
+
+function breadcrumbProd(producto) {
+    navProducto.innerHTML += `
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="breadcrumb-link" href="productos.html">Productos</a></li>
+            <li class="breadcrumb-item active breadcrumb-size" aria-current="page">${producto.nombre}</li>
+        </ol>
+    `
+
 }
 
-/*elegirProducto.addEventListener("click", () => {
-    inventario.forEach((producto, indice) {
-        pagProducto.innerHTML += `
-            <article class="col-lg-4 col-md-6 col-sm-4" id="inventario${indice}">
-                <div class="position-relative hiddenProduct">
-                    <div>
-                        <img src="../assets/${producto.nombreImg}.jpg" class="d-block w-100 border-img position-relative imgProducto" alt="${producto.nombre}">
-                    </div>
-                </div>
-                <div class="text-center OverProducto">
-                    <div class="textProducto">
-                        <h5 class="display-5">${producto.nombre}</h5>
-                        <p class="fs-5">Vienen en gris, amarillo, blanco y negro. El diseño es personalizable.</p>
-                    </div>
-                </div>
-            </article>
-            <article class="col-lg-4 col-md-6 col-sm-3 mb-5">
-                <div>
-                    <h4 class="display-4 m-5 text-center" id="tituloProducto">${producto.nombre}</h4>
-                    <p class="text-center m-5 fs-3 lh-base">Diseño personalizable</p>
-                </div>
-                <div class="text-center gy-5">
-                    <form action="#" method="#" id="formProducto">
-                        <div class="row mb-3 position">
-                            <label class="fs-4" for="cantidad">Cantidad:</label>
-                            <select class="form-select fs-4 text-center w-sm-100 position casillero" name="cantidad" id="cantidad">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
-                        <div class="row mb-3 position">
-                            <label class="form-label fs-4" for="color">Color:</label>
-                            <select class="form-select fs-4 text-center w-sm-100 position casillero" name="color" id="color">
-                                <option value="gris">Gris</option>
-                                <option value="amarillo">Amarillo</option>
-                                <option value="blanco">Blanco</option>
-                                <option value="negro">Negro</option>
-                            </select>
-                        </div>
-                        <div class="d-inline-flex p-3   justify-content-center align-items-center w-100 gx mt-3">
-                            <p class="fs-1 wdth text-center lh-base" id="precioProducto">$ ${producto.precio} 900</p>
-                            <button class="btn btnProducto btn-lg buttonComprar m-3 id="botonComprar${indice}">Comprar</button>
-                        </div>
-                    </form>
-                </div>
-            </article>
-        `
-    }
-)})*/
+
 
 function imprimirProductosIndex(desde, hasta) {
     inventario.slice(desde, hasta).forEach((producto, indice) => {
@@ -215,23 +182,17 @@ function imprimirProductos(desde, hasta) {
     })
 }
 
-cantidadProducto.addEventListener("change", () => {
-    if (cantidadProducto != null) {
-        let nombreProducto = document.getElementById('tituloProducto').textContent
-        let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
-        let cantidad = parseInt(document.getElementById('cantidad').value)
-        document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
-    }
+btnCompra.addEventListener("click", () => {
+    alert("Tu compra ha sido realizada !")
 })
-
-
 
 /*formProducto.addEventListener("submit", (e) => {
     e.preventDefault()
-    let cantidad = document.getElementById('cantidad').value
-    let precio = document.getElementById('precioProducto').value
+    cantidadProducto = document.getElementById('cantidad').value
+    precioProducto = document.getElementById('precioProducto').value
     document.getElementById('precioProducto').value = cantidad * precio
-})*/
+}*/
+
 
 /*function cargarProdCarrito() {
     inventario.forEach((producto, indice) => {
