@@ -13,14 +13,13 @@ let botonComprar = document.getElementById('botonComprar')
 let formProducto = document.getElementById('formProducto')
 let precioProducto = document.getElementById('precioProducto')
 let navCarrito = document.getElementById('navCarrito')
+let modalCarrito = document.getElementById('modalCarrito')
 
-if(window.location.href.includes("index.html"))
-{
+if( window.location.href.includes("index.html")) {
     imprimirProductosIndex(0, 6)
 }
 
-if( window.location.href.includes("productos.html"))
-{
+if( window.location.href.includes("productos.html")) {
     imprimirProductos(0, 6)
     pageAnt.addEventListener("click", () => {
         limpiarProductos()
@@ -54,12 +53,8 @@ if( window.location.href.includes("producto.html")) {
     })
 
     breadcrumbProd(producto)
-
 }
 
-if(window.location.href.includes("carritoCompra.html")) {
-    breadcrumbCarrito(producto)
-}
 
 function breadcrumbProd(producto) {
     navProducto.innerHTML += `
@@ -70,15 +65,6 @@ function breadcrumbProd(producto) {
     `
 }
 
-function breadcrumbCarrito(producto) {
-    navProducto.innerHTML += `
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a class="breadcrumb-link" href="productos.html">Productos</a></li>
-            <li class="breadcrumb-item breadcrumb-size" aria-current="page"><a class="breadcrumb-link" href="producto.html">${producto.nombre}</li></a>
-            <li class="breadcrumb-item active breadcrumb-size" aria-current="page">Carrito de Compras</li>
-        </ol>
-    `
-}
 
 function imprimirProducto(producto, indice) {
     if (sectionProd != null) {
@@ -105,24 +91,23 @@ function imprimirProducto(producto, indice) {
                     <form action="#" method="#" id="formProducto">
                         <div class="row mb-3 position">
                             <label class="fs-4" for="cantidad">Cantidad:</label>
-                            <select class="form-select fs-4 text-center w-sm-100 position casillero" name="cantidad" id="cantidad">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                            <select class="form-input fs-4 text-center w-sm-100 position casillero" name="cantidad" id="cantidad">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                             </select>
                         </div>
                         <div class="row mb-3 position">
                             <label class="form-label fs-4" for="color">Color:</label>
-                            <select class="form-select fs-4 text-center w-sm-100 position casillero" name="color" id="color">
-                                <option value="gris">Gris</option>
-                                <option value="amarillo">Amarillo</option>
+                            <select class="form-input fs-4 text-center w-sm-100 position casillero" name="color" id="color">
                                 <option value="blanco">Blanco</option>
+                                <option value="gris">Gris</option>
                                 <option value="negro">Negro</option>
                             </select>
                         </div>
                         <div class="d-inline-flex p-3   justify-content-center align-items-center w-100 gx mt-3">
                             <p class="fs-1 wdth text-center lh-base" id="precioProducto">$ ${producto.precio}</p>
-                            <a class="btn btnProducto btn-lg m-3 linkProducto" href="href="./vistas/carritoCompra.html?id=${producto.code}"><button type="submit" class="buttonComprar">Agregar al carrito</button></a>
+                            <a href="../vistas/carritoCompra.html" class="btn btnProducto btn-lg m-3 linkProducto"><button class="buttonComprar">Agregar al carrito</button></a>
                         </div>
                     </form>
                 </div>
@@ -192,6 +177,10 @@ function imprimirProductos(desde, hasta) {
         }
     })
 }
+
+btnCompra.addEventListener("click", () => {
+    alert("Tu compra ha sido realizada !")
+})
 
 /*formProducto.addEventListener("submit", (e) => {
     e.preventDefault()
