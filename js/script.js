@@ -1,6 +1,8 @@
 let carritoCompra = new Carrito()
-
-let inventario = obtenerInventario()
+let inventario
+if(inventario == null){
+     inventario = obtenerInventario()
+}
 let articleProductos = document.getElementById('articleProductos')
 let sectionProductos = document.getElementById('sectionProductos')
 let pageAnt = document.getElementById('pageAnt')
@@ -92,7 +94,7 @@ function imprimirProducto(producto, indice)
                     </div>
                     <div class="d-inline-flex p-3   justify-content-center align-items-center w-100 gx mt-3">
                         <p class="fs-1 wdth text-center lh-base" id="precioProducto">$ ${producto.precio}</p>
-                        <button class="btn btnProducto btn-lg buttonComprar m-3 id="botonComprar${indice}">Comprar</button>
+                        <a class="btn btnProducto btn-lg m-3 linkProducto" href="carritoVacio.html"><button type="button" class="buttonComprar">Comprar</button></a>
                     </div>
                 </form>
             </div>
