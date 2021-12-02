@@ -27,6 +27,7 @@ class Producto {
 class Carrito {
     constructor () {
         this.productos = []
+         
     }
 
     vaciarCarrito() {
@@ -38,6 +39,38 @@ class Carrito {
         producto.actualizarStock(-unidadesDisponibles)
         for (let i = 1; i <= unidadesDisponibles; i++) {
             this.productos.push(producto)
+        }
+        localStorage.setItem("carrito",JSON.stringify(this.productos))
+    }
+
+    verProductosCarrito() {
+        let productosCarrito = ""
+        for (let prod of this.productos) {
+            productosCarrito += `
+                <article class="col-lg-2 col-md-4 col-sm-4 col-8 cardsProductos">
+                    <div class="card text-center bg-transparent cardCarrito">
+                        <div class="card">
+                            <a href="../vistas/producto.html?id=${prod.code}" id="elegirProducto"><img class="card-img-top cardImgBorder" src="../assets/${prod.nombreImg}.jpg" alt="${prod.nombre}"></a>
+                        </div>
+                        <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
+                            <h4 class="card-title fs-3">${prod.nombre}</h4>
+                            <p class="card-text fs-4">$ ${prod.precio}</p>
+                        </div>
+                    </div>
+                </article>
+            `
+        }
+        return productosCarrito
+    }
+
+    obtenerDeStorage()
+    {
+        let index = 0;
+        let obj = JSON.parse(localStorage.getItem("carrito"))
+        while(index < obj.length)
+        {
+            this.productos.push(new Producto(obj[index].code,obj[index].nombre,obj[index].precio,obj[index].stock,obj[index].nombreImg,obj[index].nombreHTML));
+            index++
         }
     }
 
