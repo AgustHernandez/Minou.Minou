@@ -33,6 +33,8 @@ function imprimirProductosIndex(desde, hasta) {
     })
 }
 
+let comprar
+
 /* SECCIÓN PRODUCTOS */
 
 let sectionProductos = document.getElementById('sectionProductos')
