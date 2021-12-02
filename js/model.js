@@ -41,6 +41,25 @@ class Carrito {
         }
     }
 
+    verproductosCarrito() {
+        let productoCarrito = " "
+        
+        return `
+            <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
+                <div class="card text-center bg-transparent">
+                    <div>
+                        <img class="card-img-top cardImgBorder" src="../assets/${productos[indice].nombreImg}.jpg" alt="${productos[indice].nombre}"></a>
+                    </div>
+                    <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
+                        <h4 class="card-title fs-3">${productos[indice].nombre}</h4>
+                        <p class="card-text fs-4">$ ${productos[indice].cantidad}</p>
+                        <p class="card-text fs-4">$ ${productos[indice].precio}</p>
+                    </div>
+                </div>
+            </article>
+        `
+    }
+
     obtenerTotal() {
         let total = 0
         for (let i = 0; i < this.productos.length; i++) {

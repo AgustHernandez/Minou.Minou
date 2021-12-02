@@ -1,23 +1,45 @@
-let carritoCompra = new Carrito()
-
 let inventario = obtenerInventario()
+
+let carritoCompra
+if (carritoCompra == null) {
+    carritoCompra = new Carrito()
+}
+
+/* INDEX */
+
 let articleProductos = document.getElementById('articleProductos')
+
+if( window.location.href.includes("index.html")) {
+    imprimirProductosIndex(0, 6)
+}
+
+function imprimirProductosIndex(desde, hasta) {
+    inventario.slice(desde, hasta).forEach((producto, indice) => {
+        if (articleProductos != null) {
+            articleProductos.innerHTML += `
+                <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
+                    <div class="card text-center bg-transparent">
+                        <div>
+                            <a href="./vistas/producto.html?id=${producto.code}"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
+                        </div>
+                        <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
+                            <h4 class="card-title fs-3">${producto.nombre}</h4>
+                            <p class="card-text fs-4">$ ${producto.precio}</p>
+                        </div>
+                    </div>
+                </article>
+            `
+        }
+    })
+}
+
+/* SECCIÓN PRODUCTOS */
+
 let sectionProductos = document.getElementById('sectionProductos')
 let pageAnt = document.getElementById('pageAnt')
 let page1 = document.getElementById('page1')
 let pageSig = document.getElementById('pageSig')
 let page2 = document.getElementById('page2')
-let navProducto = document.getElementById('navProducto')
-let sectionProd = document.getElementById('pagProducto')
-let botonComprar = document.getElementById('botonComprar')
-let formProducto = document.getElementById('formProducto')
-let precioProducto = document.getElementById('precioProducto')
-let navCarrito = document.getElementById('navCarrito')
-let modalCarrito = document.getElementById('modalCarrito')
-
-if( window.location.href.includes("index.html")) {
-    imprimirProductosIndex(0, 6)
-}
 
 if( window.location.href.includes("productos.html")) {
     imprimirProductos(0, 6)
@@ -39,6 +61,41 @@ if( window.location.href.includes("productos.html")) {
     })
 }
 
+function limpiarProductos() {
+    sectionProductos.innerHTML = ""
+}
+
+function imprimirProductos(desde, hasta) {
+    inventario.slice(desde, hasta).forEach((producto, indice) => {
+        if (sectionProductos != null) {
+            sectionProductos.innerHTML += `
+                <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
+                    <div class="card text-center bg-transparent">
+                        <div>
+                            <a href="../vistas/producto.html?id=${producto.code}" id="elegirProducto"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
+                        </div>
+                        <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
+                            <h4 class="card-title fs-3">${producto.nombre}</h4>
+                            <p class="card-text fs-4">$ ${producto.precio}</p>
+                        </div>
+                    </div>
+                </article>
+            `
+        }
+    })
+}
+
+
+/* SECCIÓN PRODUCTO */
+
+let navProducto = document.getElementById('navProducto')
+let sectionProd = document.getElementById('pagProducto')
+let nombreProducto = document.getElementById('tituloProducto')
+let cantidad = document.getElementById('cantidad')
+let formProducto = document.getElementById('formProducto')
+let precioProducto = document.getElementById('precioProducto')
+let btnComprar = document.getElementById('btnComprar')
+
 if( window.location.href.includes("producto.html")) {
     let url = new URL(window.location.href);
     let id = url.searchParams.get("id");
@@ -46,13 +103,22 @@ if( window.location.href.includes("producto.html")) {
     imprimirProducto(producto)
 
     document.getElementById('cantidad').addEventListener("change", () => {
-        let nombreProducto = document.getElementById('tituloProducto').textContent
+        nombreProducto = document.getElementById('tituloProducto').textContent
         let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
-        let cantidad = parseInt(document.getElementById('cantidad').value)
+        cantidad = parseInt(document.getElementById('cantidad').value)
         document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
     })
 
     breadcrumbProd(producto)
+
+    document.getElementById('btnAgregarCarrito').addEventListener('click', () => {
+        let url = new URL(window.location.href);
+        let id = url.searchParams.get("id");
+        producto = inventario.filter(p => p.code == id)[0]
+        cantidad = parseInt(document.getElementById('cantidad').value)
+        carritoCompra.agregarProductos(producto, cantidad)
+        console.log(carritoCompra)
+    })
 }
 
 
@@ -91,15 +157,15 @@ function imprimirProducto(producto, indice) {
                     <form action="#" method="#" id="formProducto">
                         <div class="row mb-3 position">
                             <label class="fs-4" for="cantidad">Cantidad:</label>
-                            <select class="form-input fs-4 text-center w-sm-100 position casillero" name="cantidad" id="cantidad">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <select class="form-select fs-4 text-center w-sm-100 position casillero" name="cantidad" id="cantidad">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
                             </select>
                         </div>
                         <div class="row mb-3 position">
                             <label class="form-label fs-4" for="color">Color:</label>
-                            <select class="form-input fs-4 text-center w-sm-100 position casillero" name="color" id="color">
+                            <select class="form-select fs-4 text-center w-sm-100 position casillero" name="color" id="color">
                                 <option value="blanco">Blanco</option>
                                 <option value="gris">Gris</option>
                                 <option value="negro">Negro</option>
@@ -107,7 +173,12 @@ function imprimirProducto(producto, indice) {
                         </div>
                         <div class="d-inline-flex p-3   justify-content-center align-items-center w-100 gx mt-3">
                             <p class="fs-1 wdth text-center lh-base" id="precioProducto">$ ${producto.precio}</p>
-                            <a href="../vistas/carritoCompra.html" class="btn btnProducto btn-lg m-3 linkProducto"><button class="buttonComprar">Agregar al carrito</button></a>
+                        </div>
+                        <div class="d-inline-flex p-3   justify-content-center align-items-center w-100 gx mt-3">
+                            <button type="button" class="btn btnProducto btn-lg" id= "btnAgregarCarrito">Agregar al carrito</button>
+                            <a href="carritoCompra.html" class="btn btnProducto btn-lg m-3 linkProducto">
+                                <button type="button" class="buttonComprar" id="btnComprar">Comprar</button>
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -134,53 +205,17 @@ function imprimirProducto(producto, indice) {
     }    
 }
 
-function imprimirProductosIndex(desde, hasta) {
-    inventario.slice(desde, hasta).forEach((producto, indice) => {
-        if (articleProductos != null) {
-            articleProductos.innerHTML += `
-                <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
-                    <div class="card text-center bg-transparent">
-                        <div>
-                            <a href="./vistas/producto.html?id=${producto.code}"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
-                        </div>
-                        <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
-                            <h4 class="card-title fs-3">${producto.nombre}</h4>
-                            <p class="card-text fs-4">$ ${producto.precio}</p>
-                        </div>
-                    </div>
-                </article>
-            `
-        }
-    })
-}
 
-function limpiarProductos() {
-    sectionProductos.innerHTML = ""
-}
+/* SECCIÓN CARRITO */
 
-function imprimirProductos(desde, hasta) {
-    inventario.slice(desde, hasta).forEach((producto, indice) => {
-        if (sectionProductos != null) {
-            sectionProductos.innerHTML += `
-                <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
-                    <div class="card text-center bg-transparent">
-                        <div>
-                            <a href="../vistas/producto.html?id=${producto.code}" id="elegirProducto"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
-                        </div>
-                        <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
-                            <h4 class="card-title fs-3">${producto.nombre}</h4>
-                            <p class="card-text fs-4">$ ${producto.precio}</p>
-                        </div>
-                    </div>
-                </article>
-            `
-        }
-    })
-}
 
-btnCompra.addEventListener("click", () => {
+let navCarrito = document.getElementById('navCarrito')
+
+if( window.location.href.includes("carritoCompra.html")) {
+    document.getElementById('btnCompra').addEventListener("click", () => {
     alert("Tu compra ha sido realizada !")
-})
+    })
+}
 
 /*formProducto.addEventListener("submit", (e) => {
     e.preventDefault()
