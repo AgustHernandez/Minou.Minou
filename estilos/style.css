@@ -194,7 +194,8 @@ body {
   background-color: #F97C7C;
   border-radius: 30px;
   font-size: 1.8rem;
-  width: 20rem; }
+  width: 20rem;
+  color: white; }
   .btnProducto .linkProducto {
     text-decoration: none; }
 
