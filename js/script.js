@@ -1,16 +1,14 @@
 let inventario = obtenerInventario()
-
-let carritoCompra
-if (carritoCompra == null) {
-    carritoCompra = new Carrito()
-}
-
+let carritoCompra = new Carrito()
+carritoCompra.obtenerDeStorage()
 /* INDEX */
+
 
 let articleProductos = document.getElementById('articleProductos')
 
 if( window.location.href.includes("index.html")) {
     imprimirProductosIndex(0, 6)
+
 }
 
 function imprimirProductosIndex(desde, hasta) {
@@ -94,7 +92,6 @@ let nombreProducto = document.getElementById('tituloProducto')
 let cantidad = document.getElementById('cantidad')
 let formProducto = document.getElementById('formProducto')
 let precioProducto = document.getElementById('precioProducto')
-let btnComprar = document.getElementById('btnComprar')
 
 if( window.location.href.includes("producto.html")) {
     let url = new URL(window.location.href);
@@ -135,7 +132,7 @@ function breadcrumbProd(producto) {
 function imprimirProducto(producto, indice) {
     if (sectionProd != null) {
         sectionProd.innerHTML += `
-            <article class="col-lg-4 col-md-6 col-sm-4" id="inventario${indice}">
+            <article class="col-lg-4 col-md-6 col-sm-4">
                 <div class="position-relative hiddenProduct">
                     <div>
                         <img src="../assets/${producto.nombreImg}.jpg" class="d-block w-100 border-img position-relative imgProducto" alt="${producto.nombre}">
@@ -212,6 +209,9 @@ function imprimirProducto(producto, indice) {
 let navCarrito = document.getElementById('navCarrito')
 
 if( window.location.href.includes("carritoCompra.html")) {
+
+    document.getElementById('productosCarrito').innerHTML = carritoCompra.verProductosCarrito()
+
     document.getElementById('btnCompra').addEventListener("click", () => {
     alert("Tu compra ha sido realizada !")
     })
