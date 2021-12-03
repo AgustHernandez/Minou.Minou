@@ -18,7 +18,7 @@ function imprimirProductosIndex(desde, hasta) {
                 <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
                     <div class="card text-center bg-transparent">
                         <div>
-                            <a href="./vistas/producto.html?id=${producto.code}"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
+                            <a href="./vistas/producto.html?id=${producto.code}"><img class="card-img-top cardImgBorder" src="./assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
                         </div>
                         <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
                             <h4 class="card-title fs-3">${producto.nombre}</h4>
