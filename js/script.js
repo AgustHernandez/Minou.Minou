@@ -1,15 +1,96 @@
 let inventario = obtenerInventario()
 let carritoCompra = new Carrito()
 carritoCompra.obtenerDeStorage()
-/* INDEX */
 
+/* INDEX */
 
 let articleProductos = document.getElementById('articleProductos')
 
-if( window.location.href.includes("index.html")) {
+/* SECCIÓN PRODUCTOS */
+
+let sectionProductos = document.getElementById('sectionProductos')
+let pageAnt = document.getElementById('pageAnt')
+let page1 = document.getElementById('page1')
+let pageSig = document.getElementById('pageSig')
+let page2 = document.getElementById('page2')
+
+/* SECCIÓN PRODUCTO */
+
+let navProducto = document.getElementById('navProducto')
+let sectionProd = document.getElementById('pagProducto')
+let nombreProducto = document.getElementById('tituloProducto')
+let cantidad = document.getElementById('cantidad')
+let formProducto = document.getElementById('formProducto')
+let precioProducto = document.getElementById('precioProducto')
+
+
+$(() => {
     imprimirProductosIndex(0, 6)
 
-}
+    imprimirProductos(0, 6)
+
+    pageAnt.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(0, 6)
+    })
+    page1.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(0, 6)
+    })
+    pageSig.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(7, 9)
+    })
+    page2.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(6, 8)
+    })
+})
+
+    let url = new URL(window.location.href)
+    let id = url.searchParams.get("id")
+
+$(() => {
+    producto = inventario.filter(p => p.code == id)[0]
+    imprimirProducto(producto)
+
+    document.getElementById('cantidad').addEventListener("change", () => {
+        nombreProducto = document.getElementById('tituloProducto').textContent
+        let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
+        cantidad = parseInt(document.getElementById('cantidad').value)
+        document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
+    })
+
+    breadcrumbProd(producto)
+
+    document.getElementById('btnAgregarCarrito').addEventListener('click', () => {
+        let url = new URL(window.location.href);
+        let id = url.searchParams.get("id");
+        producto = inventario.filter(p => p.code == id)[0]
+        cantidad = parseInt(document.getElementById('cantidad').value)
+        carritoCompra.agregarProductos(producto, cantidad)
+        console.log(carritoCompra)
+    })
+})   
+
+/* SECCIÓN CARRITO */
+
+let navCarrito = document.getElementById('navCarrito')
+
+$(() => {
+    document.getElementById('productosCarrito').innerHTML = carritoCompra.verProductosCarrito()
+
+    document.getElementById('btnCompra').addEventListener("click", () => {
+    alert("Tu compra ha sido realizada !")
+    })
+
+    document.getElementById('vaciarCarrito').addEventListener("click", () => {
+        localStorage.setItem("carrito") = ""
+        carritoCompra.verProductosCarrito()
+    })
+})
+
+/* INDEX */
 
 function imprimirProductosIndex(desde, hasta) {
     inventario.slice(desde, hasta).forEach((producto, indice) => {
@@ -31,35 +112,7 @@ function imprimirProductosIndex(desde, hasta) {
     })
 }
 
-let comprar
-
 /* SECCIÓN PRODUCTOS */
-
-let sectionProductos = document.getElementById('sectionProductos')
-let pageAnt = document.getElementById('pageAnt')
-let page1 = document.getElementById('page1')
-let pageSig = document.getElementById('pageSig')
-let page2 = document.getElementById('page2')
-
-if( window.location.href.includes("productos.html")) {
-    imprimirProductos(0, 6)
-    pageAnt.addEventListener("click", () => {
-        limpiarProductos()
-        imprimirProductos(0, 6)
-    })
-    page1.addEventListener("click", () => {
-        limpiarProductos()
-        imprimirProductos(0, 6)
-    })
-    pageSig.addEventListener("click", () => {
-        limpiarProductos()
-        imprimirProductos(7, 9)
-    })
-    page2.addEventListener("click", () => {
-        limpiarProductos()
-        imprimirProductos(6, 8)
-    })
-}
 
 function limpiarProductos() {
     sectionProductos.innerHTML = ""
@@ -88,39 +141,6 @@ function imprimirProductos(desde, hasta) {
 
 /* SECCIÓN PRODUCTO */
 
-let navProducto = document.getElementById('navProducto')
-let sectionProd = document.getElementById('pagProducto')
-let nombreProducto = document.getElementById('tituloProducto')
-let cantidad = document.getElementById('cantidad')
-let formProducto = document.getElementById('formProducto')
-let precioProducto = document.getElementById('precioProducto')
-
-if( window.location.href.includes("producto.html")) {
-    let url = new URL(window.location.href);
-    let id = url.searchParams.get("id");
-    producto = inventario.filter(p => p.code == id)[0]
-    imprimirProducto(producto)
-
-    document.getElementById('cantidad').addEventListener("change", () => {
-        nombreProducto = document.getElementById('tituloProducto').textContent
-        let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
-        cantidad = parseInt(document.getElementById('cantidad').value)
-        document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
-    })
-
-    breadcrumbProd(producto)
-
-    document.getElementById('btnAgregarCarrito').addEventListener('click', () => {
-        let url = new URL(window.location.href);
-        let id = url.searchParams.get("id");
-        producto = inventario.filter(p => p.code == id)[0]
-        cantidad = parseInt(document.getElementById('cantidad').value)
-        carritoCompra.agregarProductos(producto, cantidad)
-        console.log(carritoCompra)
-    })
-}
-
-
 function breadcrumbProd(producto) {
     navProducto.innerHTML += `
         <ol class="breadcrumb">
@@ -131,7 +151,7 @@ function breadcrumbProd(producto) {
 }
 
 
-function imprimirProducto(producto, indice) {
+function imprimirProducto(producto) {
     if (sectionProd != null) {
         sectionProd.innerHTML += `
             <article class="col-lg-4 col-md-6 col-sm-4">
@@ -205,12 +225,7 @@ function imprimirProducto(producto, indice) {
 }
 
 
-/* SECCIÓN CARRITO */
-
-
-let navCarrito = document.getElementById('navCarrito')
-
-if( window.location.href.includes("carritoCompra.html")) {
+/*if( window.location.href.includes("carritoCompra.html")) {
 
     document.getElementById('productosCarrito').innerHTML = carritoCompra.verProductosCarrito()
 
