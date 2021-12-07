@@ -76,6 +76,8 @@ $(() => {
 /* SECCIÓN CARRITO */
 
 let navCarrito = document.getElementById('navCarrito')
+let productosCarrito = document.getElementById('productosCarrito')
+let cantCarrito = document.getElementById('cantCarrito')
 
 $(() => {
     document.getElementById('productosCarrito').innerHTML = carritoCompra.verProductosCarrito()
@@ -85,9 +87,11 @@ $(() => {
     })
 
     document.getElementById('vaciarCarrito').addEventListener("click", () => {
-        localStorage.setItem("carrito") = ""
-        carritoCompra.verProductosCarrito()
+        localStorage.removeItem("carrito")
+        productosCarrito.parentNode.removeChild(productosCarrito)
     })
+
+
 })
 
 /* INDEX */
