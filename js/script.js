@@ -2,46 +2,26 @@ let inventario = obtenerInventario()
 let carritoCompra = new Carrito()
 carritoCompra.obtenerDeStorage()
 
-/* INDEX */
-
-let articleProductos = document.getElementById('articleProductos')
-
-/* SECCIÓN PRODUCTOS */
-
-let sectionProductos = document.getElementById('sectionProductos')
-let pageAnt = document.getElementById('pageAnt')
-let page1 = document.getElementById('page1')
-let pageSig = document.getElementById('pageSig')
-let page2 = document.getElementById('page2')
-
-/* SECCIÓN PRODUCTO */
-
-let navProducto = document.getElementById('navProducto')
-let sectionProd = document.getElementById('pagProducto')
-let nombreProducto = document.getElementById('tituloProducto')
-let cantidad = document.getElementById('cantidad')
-let formProducto = document.getElementById('formProducto')
-let precioProducto = document.getElementById('precioProducto')
-
 
 $(() => {
     imprimirProductosIndex(0, 6)
 
     imprimirProductos(0, 6)
-
-    pageAnt.addEventListener("click", () => {
+})
+$(() => {
+    $("#pageAnt").click(() => {
         limpiarProductos()
         imprimirProductos(0, 6)
     })
-    page1.addEventListener("click", () => {
+    $("#page1").click(() => {
         limpiarProductos()
         imprimirProductos(0, 6)
     })
-    pageSig.addEventListener("click", () => {
+    $("#pageSig").click(() => {
         limpiarProductos()
         imprimirProductos(7, 9)
     })
-    page2.addEventListener("click", () => {
+    $("#page2").click(() => {
         limpiarProductos()
         imprimirProductos(6, 8)
     })
@@ -54,52 +34,45 @@ $(() => {
     producto = inventario.filter(p => p.code == id)[0]
     imprimirProducto(producto)
 
-    document.getElementById('cantidad').addEventListener("change", () => {
-        nombreProducto = document.getElementById('tituloProducto').textContent
+    $("#cantidad").change(() => {
+        let nombreProducto = $("#tituloProducto")[0].textContent
         let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
-        cantidad = parseInt(document.getElementById('cantidad').value)
-        document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
+        let cantidad = parseInt($("#cantidad").val())
+        let valor = cantidad * precio
+        $("#precioProducto").text("$ "+valor)
     })
 
     breadcrumbProd(producto)
 
-    document.getElementById('btnAgregarCarrito').addEventListener('click', () => {
+    $("#btnAgregarCarrito").click(() => {
         let url = new URL(window.location.href);
         let id = url.searchParams.get("id");
         producto = inventario.filter(p => p.code == id)[0]
-        cantidad = parseInt(document.getElementById('cantidad').value)
+        cantidad = parseInt($("#cantidad").val())
         carritoCompra.agregarProductos(producto, cantidad)
         console.log(carritoCompra)
     })
 })   
 
-/* SECCIÓN CARRITO */
-
-let navCarrito = document.getElementById('navCarrito')
-let productosCarrito = document.getElementById('productosCarrito')
-let cantCarrito = document.getElementById('cantCarrito')
-
 $(() => {
-    document.getElementById('productosCarrito').innerHTML = carritoCompra.verProductosCarrito()
+    $("productosCarrito").append(carritoCompra.verProductosCarrito())
 
-    document.getElementById('btnCompra').addEventListener("click", () => {
-    alert("Tu compra ha sido realizada !")
+    $("#btnCompra").click(() => {
+        alert("Tu compra ha sido realizada !")
     })
 
-    document.getElementById('vaciarCarrito').addEventListener("click", () => {
+    $("#vaciarCarrito").click(() => {
         localStorage.removeItem("carrito")
         productosCarrito.parentNode.removeChild(productosCarrito)
     })
-
-
 })
 
 /* INDEX */
 
 function imprimirProductosIndex(desde, hasta) {
     inventario.slice(desde, hasta).forEach((producto, indice) => {
-        if (articleProductos != null) {
-            articleProductos.innerHTML += `
+        if ($("#articleProductos") != null) {
+            $("#articleProductos").append(`
                 <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
                     <div class="card text-center bg-transparent">
                         <div>
@@ -111,7 +84,7 @@ function imprimirProductosIndex(desde, hasta) {
                         </div>
                     </div>
                 </article>
-            `
+            `)
         }
     })
 }
@@ -119,13 +92,13 @@ function imprimirProductosIndex(desde, hasta) {
 /* SECCIÓN PRODUCTOS */
 
 function limpiarProductos() {
-    sectionProductos.innerHTML = ""
+    $("#sectionProductos").prepend(" ")
 }
 
 function imprimirProductos(desde, hasta) {
     inventario.slice(desde, hasta).forEach((producto, indice) => {
-        if (sectionProductos != null) {
-            sectionProductos.innerHTML += `
+        if ($("#sectionProductos") != null) {
+            $("#sectionProductos").append(`
                 <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
                     <div class="card text-center bg-transparent">
                         <div>
@@ -137,7 +110,7 @@ function imprimirProductos(desde, hasta) {
                         </div>
                     </div>
                 </article>
-            `
+            `)
         }
     })
 }
@@ -146,18 +119,18 @@ function imprimirProductos(desde, hasta) {
 /* SECCIÓN PRODUCTO */
 
 function breadcrumbProd(producto) {
-    navProducto.innerHTML += `
+    $("#navProducto").append(`
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a class="breadcrumb-link" href="productos.html">Productos</a></li>
             <li class="breadcrumb-item active breadcrumb-size" aria-current="page">${producto.nombre}</li>
         </ol>
-    `
+    `)
 }
 
 
 function imprimirProducto(producto) {
-    if (sectionProd != null) {
-        sectionProd.innerHTML += `
+    if ($("#pagProducto") != null) {
+        $("#pagProducto").append(`
             <article class="col-lg-4 col-md-6 col-sm-4">
                 <div class="position-relative hiddenProduct">
                     <div>
@@ -224,7 +197,7 @@ function imprimirProducto(producto) {
                     </div>
                 </article>
             </article>
-        `
+        `)
     }    
 }
 
