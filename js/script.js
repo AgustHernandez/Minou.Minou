@@ -1,15 +1,103 @@
 let inventario = obtenerInventario()
 let carritoCompra = new Carrito()
 carritoCompra.obtenerDeStorage()
-/* INDEX */
 
+/* INDEX */
 
 let articleProductos = document.getElementById('articleProductos')
 
-if( window.location.href.includes("index.html")) {
+/* SECCIÓN PRODUCTOS */
+
+let sectionProductos = document.getElementById('sectionProductos')
+let pageAnt = document.getElementById('pageAnt')
+let page1 = document.getElementById('page1')
+let pageSig = document.getElementById('pageSig')
+let page2 = document.getElementById('page2')
+
+/* SECCIÓN PRODUCTO */
+
+let navProducto = document.getElementById('navProducto')
+let sectionProd = document.getElementById('pagProducto')
+let nombreProducto = document.getElementById('tituloProducto')
+let cantidad = document.getElementById('cantidad')
+let formProducto = document.getElementById('formProducto')
+let precioProducto = document.getElementById('precioProducto')
+
+
+$(() => {
     imprimirProductosIndex(0, 6)
 
-}
+    imprimirProductos(0, 6)
+
+    pageAnt.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(0, 6)
+    })
+    page1.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(0, 6)
+    })
+    pageSig.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(7, 9)
+    })
+    page2.addEventListener("click", () => {
+        limpiarProductos()
+        imprimirProductos(6, 8)
+    })
+})
+
+    let url = new URL(window.location.href)
+    let id = url.searchParams.get("id")
+
+$(() => {
+    producto = inventario.filter(p => p.code == id)[0]
+    imprimirProducto(producto)
+
+    document.getElementById('cantidad').addEventListener("change", () => {
+        nombreProducto = document.getElementById('tituloProducto').textContent
+        let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
+        cantidad = parseInt(document.getElementById('cantidad').value)
+        document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
+    })
+
+    breadcrumbProd(producto)
+
+    document.getElementById('btnAgregarCarrito').addEventListener('click', () => {
+        let url = new URL(window.location.href);
+        let id = url.searchParams.get("id");
+        producto = inventario.filter(p => p.code == id)[0]
+        cantidad = parseInt(document.getElementById('cantidad').value)
+        carritoCompra.agregarProductos(producto, cantidad)
+        console.log(carritoCompra)
+    })
+})   
+
+/* SECCIÓN CARRITO */
+
+let navCarrito = document.getElementById('navCarrito')
+let productosCarrito = document.getElementById('productosCarrito')
+let cantCarrito = document.getElementById('cantCarrito')
+let cantProdCarrito = carritoCompra.productos.length
+
+$(() => {
+    document.getElementById('productosCarrito').innerHTML = carritoCompra.verProductosCarrito()
+
+    document.getElementById('btnCompra').addEventListener("click", () => {
+    alert("Tu compra ha sido realizada !")
+    })
+
+    document.getElementById('vaciarCarrito').addEventListener("click", () => {
+        localStorage.clear()
+        productosCarrito.parentNode.removeChild(productosCarrito)
+        carritoCompra.productos=[]
+        badgeCarrito()
+    })
+
+    badgeCarrito()
+})
+
+/* INDEX */
 
 function imprimirProductosIndex(desde, hasta) {
     inventario.slice(desde, hasta).forEach((producto, indice) => {
@@ -31,35 +119,7 @@ function imprimirProductosIndex(desde, hasta) {
     })
 }
 
-let comprar
-
 /* SECCIÓN PRODUCTOS */
-
-let sectionProductos = document.getElementById('sectionProductos')
-let pageAnt = document.getElementById('pageAnt')
-let page1 = document.getElementById('page1')
-let pageSig = document.getElementById('pageSig')
-let page2 = document.getElementById('page2')
-
-if( window.location.href.includes("productos.html")) {
-    imprimirProductos(0, 6)
-    pageAnt.addEventListener("click", () => {
-        limpiarProductos()
-        imprimirProductos(0, 6)
-    })
-    page1.addEventListener("click", () => {
-        limpiarProductos()
-        imprimirProductos(0, 6)
-    })
-    pageSig.addEventListener("click", () => {
-        limpiarProductos()
-        imprimirProductos(7, 9)
-    })
-    page2.addEventListener("click", () => {
-        limpiarProductos()
-        imprimirProductos(6, 8)
-    })
-}
 
 function limpiarProductos() {
     sectionProductos.innerHTML = ""
@@ -88,39 +148,6 @@ function imprimirProductos(desde, hasta) {
 
 /* SECCIÓN PRODUCTO */
 
-let navProducto = document.getElementById('navProducto')
-let sectionProd = document.getElementById('pagProducto')
-let nombreProducto = document.getElementById('tituloProducto')
-let cantidad = document.getElementById('cantidad')
-let formProducto = document.getElementById('formProducto')
-let precioProducto = document.getElementById('precioProducto')
-
-if( window.location.href.includes("producto.html")) {
-    let url = new URL(window.location.href);
-    let id = url.searchParams.get("id");
-    producto = inventario.filter(p => p.code == id)[0]
-    imprimirProducto(producto)
-
-    document.getElementById('cantidad').addEventListener("change", () => {
-        nombreProducto = document.getElementById('tituloProducto').textContent
-        let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
-        cantidad = parseInt(document.getElementById('cantidad').value)
-        document.getElementById('precioProducto').textContent = `$ ${cantidad * precio}`
-    })
-
-    breadcrumbProd(producto)
-
-    document.getElementById('btnAgregarCarrito').addEventListener('click', () => {
-        let url = new URL(window.location.href);
-        let id = url.searchParams.get("id");
-        producto = inventario.filter(p => p.code == id)[0]
-        cantidad = parseInt(document.getElementById('cantidad').value)
-        carritoCompra.agregarProductos(producto, cantidad)
-        console.log(carritoCompra)
-    })
-}
-
-
 function breadcrumbProd(producto) {
     navProducto.innerHTML += `
         <ol class="breadcrumb">
@@ -131,7 +158,7 @@ function breadcrumbProd(producto) {
 }
 
 
-function imprimirProducto(producto, indice) {
+function imprimirProducto(producto) {
     if (sectionProd != null) {
         sectionProd.innerHTML += `
             <article class="col-lg-4 col-md-6 col-sm-4">
@@ -204,46 +231,32 @@ function imprimirProducto(producto, indice) {
     }    
 }
 
+/* CARRITO */
 
-/* SECCIÓN CARRITO */
-
-
-let navCarrito = document.getElementById('navCarrito')
-
-if( window.location.href.includes("carritoCompra.html")) {
-
-    document.getElementById('productosCarrito').innerHTML = carritoCompra.verProductosCarrito()
-
-    document.getElementById('btnCompra').addEventListener("click", () => {
-    alert("Tu compra ha sido realizada !")
-    })
-}
-
-/*formProducto.addEventListener("submit", (e) => {
-    e.preventDefault()
-    cantidadProducto = document.getElementById('cantidad').value
-    precioProducto = document.getElementById('precioProducto').value
-    document.getElementById('precioProducto').value = cantidad * precio
-}*/
-
-
-/*function cargarProdCarrito() {
-    inventario.forEach((producto, indice) => {
-        articleProductos.innerHTML += `
-        <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
-            <div class="card text-center bg-transparent">
-                <div>
-                    <a href="../vistas/${producto.nombreHTML}.html"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
-                </div>
-                <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
-                    <h4 class="card-title fs-3">${producto.nombre}</h4>
-                    <p class="card-text fs-4">$ ${producto.precio}</p>
-                </div>
-            </div>
-        </article>
+function badgeCarrito () {
+    let cantProdCarrito = carritoCompra.productos.length
+    cantCarrito.innerHTML = ""
+    if (cantProdCarrito == 0) {
+        cantCarrito.innerHTML += `
+        <a class="nav-link active" aria-current="page" href="carritoCompra1.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+            </svg>
+        </a>
         `
-    })
+    }
+    if (cantProdCarrito != 0) {
+        cantCarrito.innerHTML += `
+            <span class="position-absolute top-0 start-50 badge bg-light text-dark">${cantProdCarrito}</span>
+            <a class="nav-link active" aria-current="page" href="carritoCompra1.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                </svg>
+            </a>
+        `
+    }
 }
+
 
 /*let tabla = document.getElementById("tabla")
 function cargarSubtotales() {
