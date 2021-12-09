@@ -54,6 +54,15 @@ $(() => {
     })
 })   
 
+
+/* SECCIÓN CARRITO */
+
+let navCarrito = document.getElementById('navCarrito')
+let productosCarrito = document.getElementById('productosCarrito')
+let cantCarrito = document.getElementById('cantCarrito')
+let cantProdCarrito = carritoCompra.productos.length
+
+
 $(() => {
     $("productosCarrito").append(carritoCompra.verProductosCarrito())
 
@@ -64,6 +73,8 @@ $(() => {
     $("#vaciarCarrito").click(() => {
         localStorage.removeItem("carrito")
         productosCarrito.parentNode.removeChild(productosCarrito)
+        carritoCompra.productos=[]
+        badgeCarrito()
     })
 })
 
@@ -201,41 +212,32 @@ function imprimirProducto(producto) {
     }    
 }
 
+/* CARRITO */
 
-/*if( window.location.href.includes("carritoCompra.html")) {
-
-    document.getElementById('productosCarrito').innerHTML = carritoCompra.verProductosCarrito()
-
-    document.getElementById('btnCompra').addEventListener("click", () => {
-    alert("Tu compra ha sido realizada !")
-    })
-}
-
-/*formProducto.addEventListener("submit", (e) => {
-    e.preventDefault()
-    cantidadProducto = document.getElementById('cantidad').value
-    precioProducto = document.getElementById('precioProducto').value
-    document.getElementById('precioProducto').value = cantidad * precio
-}*/
-
-
-/*function cargarProdCarrito() {
-    inventario.forEach((producto, indice) => {
-        articleProductos.innerHTML += `
-        <article class="col-lg-3 col-md-4 col-sm-4 col-8 cardProducto" id="inventario${indice}">
-            <div class="card text-center bg-transparent">
-                <div>
-                    <a href="../vistas/${producto.nombreHTML}.html"><img class="card-img-top cardImgBorder" src="../assets/${producto.nombreImg}.jpg" alt="${producto.nombre}"></a>
-                </div>
-                <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
-                    <h4 class="card-title fs-3">${producto.nombre}</h4>
-                    <p class="card-text fs-4">$ ${producto.precio}</p>
-                </div>
-            </div>
-        </article>
+function badgeCarrito () {
+    let cantProdCarrito = carritoCompra.productos.length
+    cantCarrito.innerHTML = ""
+    if (cantProdCarrito == 0) {
+        cantCarrito.innerHTML += `
+        <a class="nav-link active" aria-current="page" href="carritoCompra1.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+            </svg>
+        </a>
         `
-    })
+    }
+    if (cantProdCarrito != 0) {
+        cantCarrito.innerHTML += `
+            <span class="position-absolute top-0 start-50 badge bg-light text-dark">${cantProdCarrito}</span>
+            <a class="nav-link active" aria-current="page" href="carritoCompra1.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                </svg>
+            </a>
+        `
+    }
 }
+
 
 /*let tabla = document.getElementById("tabla")
 function cargarSubtotales() {
