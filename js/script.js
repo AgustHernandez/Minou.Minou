@@ -54,15 +54,6 @@ $(() => {
     })
 })   
 
-
-/* SECCIÓN CARRITO */
-
-let navCarrito = document.getElementById('navCarrito')
-let productosCarrito = document.getElementById('productosCarrito')
-let cantCarrito = document.getElementById('cantCarrito')
-let cantProdCarrito = carritoCompra.productos.length
-
-
 $(() => {
     $("productosCarrito").append(carritoCompra.verProductosCarrito())
 
@@ -76,6 +67,8 @@ $(() => {
         carritoCompra.productos=[]
         badgeCarrito()
     })
+
+    badgeCarrito()
 })
 
 /* INDEX */
@@ -103,7 +96,7 @@ function imprimirProductosIndex(desde, hasta) {
 /* SECCIÓN PRODUCTOS */
 
 function limpiarProductos() {
-    $("#sectionProductos").prepend(" ")
+    $("#sectionProductos").text("")
 }
 
 function imprimirProductos(desde, hasta) {
@@ -216,25 +209,25 @@ function imprimirProducto(producto) {
 
 function badgeCarrito () {
     let cantProdCarrito = carritoCompra.productos.length
-    cantCarrito.innerHTML = ""
+    $('#cantCarrito').text("")
     if (cantProdCarrito == 0) {
-        cantCarrito.innerHTML += `
-        <a class="nav-link active" aria-current="page" href="carritoCompra1.html">
+        $('#cantCarrito').append(`
+        <a class="nav-link active" aria-current="page" href="carritoCompra.html">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
                 <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
             </svg>
         </a>
-        `
+        `)
     }
     if (cantProdCarrito != 0) {
-        cantCarrito.innerHTML += `
+        $('#cantCarrito').append(`
             <span class="position-absolute top-0 start-50 badge bg-light text-dark">${cantProdCarrito}</span>
-            <a class="nav-link active" aria-current="page" href="carritoCompra1.html">
+            <a class="nav-link active" aria-current="page" href="carritoCompra.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
                 </svg>
             </a>
-        `
+        `)
     }
 }
 
