@@ -51,6 +51,9 @@ $(() => {
         cantidad = parseInt($("#cantidad").val())
         carritoCompra.agregarProductos(producto, cantidad)
         console.log(carritoCompra)
+        $("#productoAgregado").append(`
+            <p class="fs-4"> Se ha agregado tu producto al carrito </p>
+        `)
     })
 })   
 
@@ -174,12 +177,13 @@ function imprimirProducto(producto) {
                         <div class="d-inline-flex p-3   justify-content-center align-items-center w-100 gx mt-3">
                             <p class="fs-1 wdth text-center lh-base" id="precioProducto">$ ${producto.precio}</p>
                         </div>
-                        <div class="d-inline-flex p-3   justify-content-center align-items-center w-100 gx mt-3">
+                        <div class="d-inline-flex p-3 justify-content-center align-items-center w-100 gx mt-3">
                             <button type="button" class="btn btnProducto btn-lg" id= "btnAgregarCarrito">Agregar al carrito</button>
                             <a href="carritoCompra.html" class="btn btnProducto btn-lg m-3 linkProducto">
                                 <button type="button" class="buttonComprar" id="btnComprar">Comprar</button>
                             </a>
                         </div>
+                        <div id="productoAgregado"></div>
                     </form>
                 </div>
                 <div class="d-inline-flex p-3 justify-content-center align-items-center w-100 gx-5">
