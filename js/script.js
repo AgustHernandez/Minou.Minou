@@ -29,7 +29,6 @@ $(() => {
 
     let url = new URL(window.location.href)
     let id = url.searchParams.get("id")
-    let indice = 1
 
 $(() => {
     producto = inventario.filter(p => p.code == id)[0]
@@ -54,7 +53,6 @@ $(() => {
         console.log(carritoCompra)
         $("#productoAgregado").show()
     })
-
 
     $("#arrowDerecha").click(() => {
         $("#producto1").css("display", "none")
