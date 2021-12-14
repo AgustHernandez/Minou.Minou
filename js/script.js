@@ -29,6 +29,7 @@ $(() => {
 
     let url = new URL(window.location.href)
     let id = url.searchParams.get("id")
+    let indice = 1
 
 $(() => {
     producto = inventario.filter(p => p.code == id)[0]
@@ -51,9 +52,18 @@ $(() => {
         cantidad = parseInt($("#cantidad").val())
         carritoCompra.agregarProductos(producto, cantidad)
         console.log(carritoCompra)
-        $("#productoAgregado").append(`
-            <p class="fs-4"> Se ha agregado tu producto al carrito </p>
-        `)
+        $("#productoAgregado").show()
+    })
+
+
+    $("#arrowDerecha").click(() => {
+        $("#producto1").css("display", "none")
+        $("#producto3").css("display", "flex")
+     })
+
+    $("#arrowIzquierda").click(() => {
+        $("#producto4").css("display", "flex")
+        $("#producto2").css("display", "none")
     })
 })   
 
@@ -183,7 +193,9 @@ function imprimirProducto(producto) {
                                 <button type="button" class="buttonComprar" id="btnComprar">Comprar</button>
                             </a>
                         </div>
-                        <div id="productoAgregado"></div>
+                        <div id="productoAgregado">
+                            <p class="fs-4 hidden"> Se ha agregado tu producto al carrito </p>
+                        </div>
                     </form>
                 </div>
                 <div class="d-inline-flex p-3 justify-content-center align-items-center w-100 gx-5">
@@ -208,6 +220,7 @@ function imprimirProducto(producto) {
         `)
     }    
 }
+
 
 /* CARRITO */
 
