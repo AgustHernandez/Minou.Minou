@@ -7,7 +7,7 @@
         padding-right: 0;
     }
     @include desktop {
-        height: auto;
+        height: 110rem;
         padding-left: 0;
         padding-right: 0;
     }
@@ -16,100 +16,98 @@
             width: 45rem;
         }
     }
-    .table {
-        margin-bottom: 0;
-        border: 0 solid transparent;
-        .thead {
+
+    .divVaciarCarrito {
+        width: 1500px;
+        display: flex;
+        justify-content: end;
+        align-items:flex-end;
+    }
+        .btnVaciarCarrito {
+            width: 110px;
+            background-color: #73403C;
+            border-radius: 44px;
+            color: white;
             font-size: 1.5rem;
-            font-weight: 600;
-            letter-spacing: 1.4;
-            line-height: 30px;
-            .tableProduct {
-                text-align: start;
-                width: auto;
+        }
+    .tablaCarrito {
+        height: auto;
+        .table {
+            margin-bottom: 0;
+            border: 0 solid transparent;
+            .thead {
+                font-size: 1.5rem;
+                font-weight: 600;
+                letter-spacing: 1.4;
+                line-height: 30px;
+                .tableProduct {
+                    text-align: start;
+                    width: auto;
+                }
             }
-        }
-        .tableImg {
-            width: 50px;
-            padding: 15px 10px 15px 5px;
-            .imgCarrito {
-                width: 12rem;
-                height: 12rem;
-                border-radius: 19px;
+            .tableImg {
+                width: 50px;
+                padding: 15px 10px 15px 5px;
+                .imgCarrito {
+                    width: 12rem;
+                    height: 12rem;
+                    border-radius: 19px;
+                }
             }
-        }
-        .tableDetalle {
-            font-size: 1.2rem;
-            width: 115px;
-            vertical-align: middle;
-            letter-spacing: 2;
-            padding: 15px 10px 15px 5px;
-        }
-        .tableCantidad {
-            padding: 15px 5px 15px 5px;
-            vertical-align: middle;
-            font-size: 1.2rem;
-        }
-        .tablePrecio {
-            padding: 15px 5px 15px 5px;
-            vertical-align: middle;
-            font-size: 1.2rem;
-        }
-        .tableSubtotal {
-            vertical-align: middle;
-            font-size: 1.2rem;
-            padding: 15px 5px 15px 5px;
-        }
-        .tableTrash {
-            vertical-align: middle;
-            width: 50px;
-            padding: 15px 5px 15px 10px;
-            .buttonTrash {
-                border: 0;
-                background-color: transparent;
+            .tableDetalle {
+                font-size: 1.2rem;
+                width: 115px;
+                vertical-align: middle;
+                letter-spacing: 2;
+                padding: 15px 10px 15px 5px;
+            }
+            .tableCantidad {
+                padding: 15px 5px 15px 5px;
+                vertical-align: middle;
+                font-size: 1.2rem;
+            }
+            .tablePrecio {
+                padding: 15px 5px 15px 5px;
+                vertical-align: middle;
+                font-size: 1.2rem;
+            }
+            .tableSubtotal {
+                vertical-align: middle;
+                font-size: 1.2rem;
+                padding: 15px 5px 15px 5px;
+            }
+            .tableTrash {
+                vertical-align: middle;
+                width: 50px;
+                padding: 15px 5px 15px 10px;
+                .buttonTrash {
+                    border: 0;
+                    background-color: transparent;
+                }
             }
         }
     }
-
-    .prodCarrito {
+    /*.prodCarrito {
         @include desktop {
-            height: 370px;
+            height: 320px;
             padding-left: 0;
             padding-right: 0;
         }
-    }
-
-    .cardCarrito {
-        width: 150px;
-        height: 150px;
-        padding: 0rem;
-        border: none;
-        .card {
-            border: none;
-            .cardBorder {
-                border-bottom-left-radius: 10px;
-                border-bottom-right-radius: 10px;
-            }
-            .cardImgBorder {
-                border-top-right-radius: 10px;
-                border-top-left-radius: 10px;
-            }
-        }
-    }
+    }*/
 
     .articleEnvio {
-        @include desktop {
-            height: 300px;
-            padding-left: 0;
-            padding-right: 0;
-        }
+        height: 190px;
+        justify-content: start;
+        align-content: center;
     }
+
     .imgCamion {
         width: 40px;
     }
     .textDomicilio {
         vertical-align: auto;
     }
+
     .envios {
         height: 120px;
         width: 350px;
@@ -140,39 +138,42 @@
         }
     }
     .containerTotal {
-        width: 400px;
-        left: 915px;
-        top: 900px;
+        width: 1020px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items:flex-end;
     }
     .textTotal {
         font-size: 2rem;
         font-weight: 700;
         display: flex;
-        justify-content: space-around;
         align-items: center;
         .total {
             font-size: 2rem;
             font-weight: 700;
+            padding-right: 20px;
         }
     }
-
-    .botonCarrito {
-        width: 400px;
-        left: 915px;
-        top: 950px;
-    }
-    .btnCarrito {
-        width: 100px;
-        background-color: #F97C7C;
-        border-radius: 44px;
-        color: white;
-        font-size: 1.5rem;
-        transition: all 1s;
-        @include tablet {
-            width: 30rem;
-        }
-        &:hover {
-            transform: scale(1.1);
+    .containerBtnCarrito {
+        width: 1200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items:flex-end;
+        .btnCarrito {
+            width: 100px;
+            background-color: #F97C7C;
+            border-radius: 44px;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 1s;
+            @include tablet {
+                width: 30rem;
+            }
+            &:hover {
+                transform: scale(1.1);
+            }
         }
     }
     .linkBoton {

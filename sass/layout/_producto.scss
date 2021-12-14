@@ -9,7 +9,7 @@
         padding-right: 0;
     }
     @include desktop {
-        height: 55rem;
+        height: auto;
         padding-left: 0;
         padding-right: 0;
     }
@@ -134,4 +134,21 @@
 
 .breadcrumb-size {
     font-size: 1.5rem;
+}
+
+#productoAgregado {
+    display: none;
+}
+
+.arrowProducto {
+    display: flex;
+    justify-content: end;
+    align-items:flex-end;
+}
+
+#producto3 {
+    display: none;
+}
+#producto4 {
+    display: none;
 }

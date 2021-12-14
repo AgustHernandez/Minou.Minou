@@ -29,6 +29,7 @@ $(() => {
 
     let url = new URL(window.location.href)
     let id = url.searchParams.get("id")
+    let indice = 1
 
 $(() => {
     producto = inventario.filter(p => p.code == id)[0]
@@ -51,6 +52,18 @@ $(() => {
         cantidad = parseInt($("#cantidad").val())
         carritoCompra.agregarProductos(producto, cantidad)
         console.log(carritoCompra)
+        $("#productoAgregado").show()
+    })
+
+
+    $("#arrowDerecha").click(() => {
+        $("#producto1").css("display", "none")
+        $("#producto3").css("display", "flex")
+     })
+
+    $("#arrowIzquierda").click(() => {
+        $("#producto4").css("display", "flex")
+        $("#producto2").css("display", "none")
     })
 })   
 
@@ -174,11 +187,14 @@ function imprimirProducto(producto) {
                         <div class="d-inline-flex p-3   justify-content-center align-items-center w-100 gx mt-3">
                             <p class="fs-1 wdth text-center lh-base" id="precioProducto">$ ${producto.precio}</p>
                         </div>
-                        <div class="d-inline-flex p-3   justify-content-center align-items-center w-100 gx mt-3">
+                        <div class="d-inline-flex p-3 justify-content-center align-items-center w-100 gx mt-3">
                             <button type="button" class="btn btnProducto btn-lg" id= "btnAgregarCarrito">Agregar al carrito</button>
                             <a href="carritoCompra.html" class="btn btnProducto btn-lg m-3 linkProducto">
                                 <button type="button" class="buttonComprar" id="btnComprar">Comprar</button>
                             </a>
+                        </div>
+                        <div id="productoAgregado">
+                            <p class="fs-4 hidden"> Se ha agregado tu producto al carrito </p>
                         </div>
                     </form>
                 </div>
@@ -204,6 +220,7 @@ function imprimirProducto(producto) {
         `)
     }    
 }
+
 
 /* CARRITO */
 
