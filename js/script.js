@@ -29,10 +29,27 @@ $(() => {
 
     let url = new URL(window.location.href)
     let id = url.searchParams.get("id")
+    const URLGET = "https://www.dolarsi.com/api/api.php?type=valoresprincipales"
 
 $(() => {
     producto = inventario.filter(p => p.code == id)[0]
     imprimirProducto(producto)
+
+    $("btnDolar").click(() => {
+        $.get(URLGET, function (respuesta, estado) {
+            if(estado === "success"){
+                let cotizaciones = respuesta;
+                /*for (const dato of cotizaciones) {
+                    $("body").prepend(`
+                        <div>
+                            <h3>${dato.title}</h3>
+                            <p> ${dato.body}</p>
+                        </div>
+                    `)
+                }*/
+            }
+        })
+    })
 
     $("#cantidad").change(() => {
         let nombreProducto = $("#tituloProducto")[0].textContent
