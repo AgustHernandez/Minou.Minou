@@ -88,7 +88,7 @@ $(() => {
 })   
 
 $(() => {
-    $("productosCarrito").append(carritoCompra.verProductosCarrito())
+    $("modal-body").append(carritoCompra.verProductosCarrito())
 
     $("#btnCompra").click(() => {
         alert("Tu compra ha sido realizada !")
@@ -209,12 +209,9 @@ function imprimirProducto(producto) {
                         </div>
                         <div class="d-inline-flex p-3 justify-content-center align-items-center w-100 gx mt-3">
                             <button type="button" class="btn btnProducto btn-lg" id= "btnAgregarCarrito">Agregar al carrito</button>
-                            <a href="carritoCompra.html" class="btn btnProducto btn-lg m-3 linkProducto">
-                                <button type="button" class="buttonComprar" id="btnComprar">Comprar</button>
-                            </a>
                         </div>
                         <div id="productoAgregado">
-                            <p class="fs-4 hidden"> Se ha agregado tu producto al carrito </p>
+                            <p class="fs-4 hidden"> Se ha agregado tu producto al carrito. <br> <a class="linkProducto" data-bs-toggle="modal" data-bs-target="#idModal" id="modalCarritoCompra">VER CARRITO</a></p>
                         </div>
                     </form>
                 </div>
