@@ -51,7 +51,7 @@ $(() => {
                 let nombreProducto = $("#tituloProducto")[0].textContent
                 let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
                 let cantidad = parseInt($("#cantidad").val())
-                $("#precioProducto").text("U$S "+((precio * cantidad) / cotizacion))
+                $("#precioProducto").text("U$S "+((precio * cantidad) / cotizacion).toFixed(2))
             }
         })
     })
