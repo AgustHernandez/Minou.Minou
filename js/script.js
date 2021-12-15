@@ -35,18 +35,23 @@ $(() => {
     producto = inventario.filter(p => p.code == id)[0]
     imprimirProducto(producto)
 
-    $("btnDolar").click(() => {
+    $("#btnPesos").click(() => {
+        let nombreProducto = $("#tituloProducto")[0].textContent
+        let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
+        let cantidad = parseInt($("#cantidad").val())
+        let valor = cantidad * precio
+        $("#precioProducto").text("$ "+valor)
+
+    })
+
+    $("#btnDolar").click(() => {
         $.get(URLGET, function (respuesta, estado) {
             if(estado === "success"){
-                let cotizaciones = respuesta;
-                /*for (const dato of cotizaciones) {
-                    $("body").prepend(`
-                        <div>
-                            <h3>${dato.title}</h3>
-                            <p> ${dato.body}</p>
-                        </div>
-                    `)
-                }*/
+                let cotizacion = parseFloat(respuesta[0].casa.venta)
+                let nombreProducto = $("#tituloProducto")[0].textContent
+                let precio = inventario.filter(producto => producto.nombre == nombreProducto)[0].precio
+                let cantidad = parseInt($("#cantidad").val())
+                $("#precioProducto").text("U$S "+((precio * cantidad) / cotizacion))
             }
         })
     })
