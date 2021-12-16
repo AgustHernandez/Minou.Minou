@@ -196,12 +196,22 @@ body {
   font-size: 1.8rem;
   width: 20rem;
   color: white; }
-  .btnProducto .linkProducto {
-    text-decoration: none; }
 
-.buttonComprar {
-  background-color: transparent;
-  border: none;
+.linkProducto {
+  text-decoration: none; }
+
+.btnModalSgComprando {
+  background-color: #5e5c5c;
+  border-radius: 30px;
+  font-size: 1.5rem;
+  width: auto;
+  color: white; }
+
+.btnModalPago {
+  background-color: #F97C7C;
+  border-radius: 30px;
+  font-size: 1.8rem;
+  width: 15rem;
   color: white; }
 
 .cardsProductos {
@@ -340,151 +350,125 @@ input:checked + .slider .dolares {
 .slider.round:before {
   border-radius: 50%; }
 
-.carrito {
-  /*.prodCarrito {
-        @include desktop {
-            height: 320px;
-            padding-left: 0;
-            padding-right: 0;
-        }
-    }*/ }
-  @media screen and (min-width: 768px) {
-    .carrito {
-      height: 50rem;
-      padding-left: 0;
-      padding-right: 0; } }
-  @media screen and (min-width: 1024px) {
-    .carrito {
-      height: 110rem;
-      padding-left: 0;
-      padding-right: 0; } }
-  @media screen and (min-width: 1024px) {
-    .carrito .col-lg-4 {
-      width: 45rem; } }
-  .carrito .divVaciarCarrito {
-    width: 1500px;
-    display: flex;
-    justify-content: end;
-    align-items: flex-end; }
-  .carrito .btnVaciarCarrito {
-    width: 110px;
-    background-color: #73403C;
-    border-radius: 44px;
-    color: white;
-    font-size: 1.5rem; }
-  .carrito .tablaCarrito {
-    height: auto; }
-    .carrito .tablaCarrito .table {
-      margin-bottom: 0;
-      border: 0 solid transparent; }
-      .carrito .tablaCarrito .table .thead {
-        font-size: 1.5rem;
-        font-weight: 600;
-        letter-spacing: 1.4;
-        line-height: 30px; }
-        .carrito .tablaCarrito .table .thead .tableProduct {
-          text-align: start;
-          width: auto; }
-      .carrito .tablaCarrito .table .tableImg {
-        width: 50px;
-        padding: 15px 10px 15px 5px; }
-        .carrito .tablaCarrito .table .tableImg .imgCarrito {
-          width: 12rem;
-          height: 12rem;
-          border-radius: 19px; }
-      .carrito .tablaCarrito .table .tableDetalle {
-        font-size: 1.2rem;
-        width: 115px;
-        vertical-align: middle;
-        letter-spacing: 2;
-        padding: 15px 10px 15px 5px; }
-      .carrito .tablaCarrito .table .tableCantidad {
-        padding: 15px 5px 15px 5px;
-        vertical-align: middle;
-        font-size: 1.2rem; }
-      .carrito .tablaCarrito .table .tablePrecio {
-        padding: 15px 5px 15px 5px;
-        vertical-align: middle;
-        font-size: 1.2rem; }
-      .carrito .tablaCarrito .table .tableSubtotal {
-        vertical-align: middle;
-        font-size: 1.2rem;
-        padding: 15px 5px 15px 5px; }
-      .carrito .tablaCarrito .table .tableTrash {
-        vertical-align: middle;
-        width: 50px;
-        padding: 15px 5px 15px 10px; }
-        .carrito .tablaCarrito .table .tableTrash .buttonTrash {
-          border: 0;
-          background-color: transparent; }
-  .carrito .articleEnvio {
-    height: 190px;
-    justify-content: start;
-    align-content: center; }
-  .carrito .imgCamion {
-    width: 40px; }
-  .carrito .textDomicilio {
-    vertical-align: auto; }
-  .carrito .envios {
-    height: 120px;
-    width: 350px;
-    padding-left: 20px;
-    box-sizing: border-box;
-    border: 1px solid black;
-    border-radius: 20px; }
-    .carrito .envios .listEnvios {
-      margin-right: 0px;
-      margin: 10px 0px 10px 0px; }
-      .carrito .envios .listEnvios .form-check-input {
-        width: 1.5rem;
-        height: 1.5rem; }
-      .carrito .envios .listEnvios .form-check-label {
-        width: 180px;
-        padding-left: 10px; }
-      .carrito .envios .listEnvios .precioEnvio {
-        width: 80px;
-        font-weight: 700;
-        left: 260px;
-        top: 5px; }
-        .carrito .envios .listEnvios .precioEnvio .textPrecio {
-          font-size: 1.8rem; }
-  .carrito .containerTotal {
-    width: 1020px;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: flex-end; }
-  .carrito .textTotal {
+@media screen and (min-width: 768px) {
+  .carrito {
+    height: 50rem;
+    padding-left: 0;
+    padding-right: 0; } }
+
+@media screen and (min-width: 1024px) {
+  .carrito {
+    height: 110rem;
+    padding-left: 0;
+    padding-right: 0; } }
+
+@media screen and (min-width: 1024px) {
+  .carrito .col-lg-4 {
+    width: 45rem; } }
+
+.carrito .divVaciarCarrito {
+  width: 1500px;
+  display: flex;
+  justify-content: end;
+  align-items: flex-end; }
+
+.carrito .btnVaciarCarrito {
+  width: 110px;
+  background-color: #73403C;
+  border-radius: 44px;
+  color: white;
+  font-size: 1.5rem; }
+
+.carrito .articleEnvio {
+  height: 190px;
+  justify-content: start;
+  align-content: center; }
+
+.carrito .imgCamion {
+  width: 40px; }
+
+.carrito .textDomicilio {
+  vertical-align: auto; }
+
+.carrito .envios {
+  height: 120px;
+  width: 350px;
+  padding-left: 20px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 20px; }
+  .carrito .envios .listEnvios {
+    margin-right: 0px;
+    margin: 10px 0px 10px 0px; }
+    .carrito .envios .listEnvios .form-check-input {
+      width: 1.5rem;
+      height: 1.5rem; }
+    .carrito .envios .listEnvios .form-check-label {
+      width: 180px;
+      padding-left: 10px; }
+    .carrito .envios .listEnvios .precioEnvio {
+      width: 80px;
+      font-weight: 700;
+      left: 260px;
+      top: 5px; }
+      .carrito .envios .listEnvios .precioEnvio .textPrecio {
+        font-size: 1.8rem; }
+
+.carrito .containerTotal {
+  width: 1020px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: flex-end; }
+
+.carrito .textTotal {
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center; }
+  .carrito .textTotal .total {
     font-size: 2rem;
     font-weight: 700;
-    display: flex;
-    align-items: center; }
-    .carrito .textTotal .total {
-      font-size: 2rem;
-      font-weight: 700;
-      padding-right: 20px; }
-  .carrito .containerBtnCarrito {
-    width: 1200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: flex-end; }
-    .carrito .containerBtnCarrito .btnCarrito {
-      width: 100px;
-      background-color: #F97C7C;
-      border-radius: 44px;
-      color: white;
-      font-size: 1.5rem;
-      transition: all 1s; }
-      @media screen and (min-width: 768px) {
-        .carrito .containerBtnCarrito .btnCarrito {
-          width: 30rem; } }
-      .carrito .containerBtnCarrito .btnCarrito:hover {
-        transform: scale(1.1); }
-  .carrito .linkBoton {
-    text-decoration: none;
+    padding-right: 20px; }
+
+.carrito .containerBtnCarrito {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: flex-end; }
+  .carrito .containerBtnCarrito .btnCarrito {
+    width: 100px;
+    background-color: #F97C7C;
+    border-radius: 44px;
     color: white;
-    font-size: 1.5rem; }
+    font-size: 1.5rem;
+    transition: all 1s; }
+    @media screen and (min-width: 768px) {
+      .carrito .containerBtnCarrito .btnCarrito {
+        width: 30rem; } }
+    .carrito .containerBtnCarrito .btnCarrito:hover {
+      transform: scale(1.1); }
+
+.carrito .linkBoton {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem; }
+
+.cardCarrito {
+  display: flex;
+  flex-direction: row; }
+  .cardCarrito .cardImgCarrito {
+    width: auto;
+    height: auto; }
+  .cardCarrito .cardTextCarrito {
+    width: auto;
+    height: auto; }
+
+.trashCarrito {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .piePag {
   background-image: linear-gradient(to right, #BF846F, #8C5346); }
