@@ -211,7 +211,24 @@ function imprimirProducto(producto) {
                             <button type="button" class="btn btnProducto btn-lg" id= "btnAgregarCarrito">Agregar al carrito</button>
                         </div>
                         <div id="productoAgregado">
-                            <p class="fs-4 hidden"> Se ha agregado tu producto al carrito. <br> <a class="linkProducto" data-bs-toggle="modal" data-bs-target="#idModal" id="modalCarritoCompra">VER CARRITO</a></p>
+                            <p class="fs-4 hidden"> Se ha agregado tu producto al carrito. <br> <a class="linkProducto" data-bs-toggle="modal" data-bs-target="#carritoActual" id="modalCarritoCompra">VER CARRITO</a></p>
+                            <div class="modal fade" id="carritoActual" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Resumen de su compra</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ${carritoCompra.verProductosCarrito()}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary">Finalizar compra</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
