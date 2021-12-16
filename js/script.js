@@ -238,6 +238,18 @@ function imprimirProducto(producto) {
     }    
 }
 
+function agregaProductos () {
+    if(carritoCompra.find(product => product.nombre == producto.nombre)) {
+        let index = carritoCompra.findIndex(product => product.nombre == producto.nombre)
+        carritoCompra[index].cant++
+        localStorage.setItem('carritoCompra')
+    } else {
+        let nuevoProducto = new Producto(productoEnArray.nombre, productoEnArray.marca, 
+        productoEnArray.modelo, productoEnArray.precio, productoEnArray.stock, productoEnArray.img)
+        productos.push(nuevoProducto)
+        localStorage.setItem('carrito', JSON.stringify(productos))
+    }
+}
 
 /* CARRITO */
 
