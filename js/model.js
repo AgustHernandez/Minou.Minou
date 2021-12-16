@@ -59,23 +59,15 @@ class Carrito {
                             </div>
                         </div>
                     </div>
+                    <div class="trashCarrito">
+                        <i class="far fa-trash-alt fa-3x"></i>
+                    </div>
                 </div>
             `
         }
         return productosCarrito
     }
 
-    /*<article class="col-lg-2 col-md-4 col-sm-4 col-8 cardsProductos">
-    <div class="card text-center bg-transparent cardCarrito">
-        <div class="card">
-            <a href="../vistas/producto.html?id=${prod.code}" id="elegirProducto"><img class="card-img-top cardImgBorder cardImgCarrito" src="../assets/${prod.nombreImg}.jpg" alt="${prod.nombre}"></a>
-        </div>
-        <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg cardTextCarrito">
-            <h4 class="card-title fs-3">${prod.nombre}</h4>
-            <p class="card-text fs-4">$ ${prod.precio}</p>
-        </div>
-    </div>
-</article>*/
     obtenerDeStorage() {
         let index = 0;
         let obj = JSON.parse(localStorage.getItem("carrito"))
