@@ -47,22 +47,35 @@ class Carrito {
         let productosCarrito = ""
         for (let prod of this.productos) {
             productosCarrito += `
-                <article class="col-lg-2 col-md-4 col-sm-4 col-8 cardsProductos">
-                    <div class="card text-center bg-transparent cardCarrito">
-                        <div class="card">
-                            <a href="../vistas/producto.html?id=${prod.code}" id="elegirProducto"><img class="card-img-top cardImgBorder" src="../assets/${prod.nombreImg}.jpg" alt="${prod.nombre}"></a>
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="../assets/${prod.nombreImg}.jpg" class="img-fluid rounded-start" alt="${prod.nombre}">
                         </div>
-                        <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg">
-                            <h4 class="card-title fs-3">${prod.nombre}</h4>
-                            <p class="card-text fs-4">$ ${prod.precio}</p>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">${prod.nombre}</h5>
+                                <p class="card-text">$ ${prod.precio}</p>
+                            </div>
                         </div>
                     </div>
-                </article>
+                </div>
             `
         }
         return productosCarrito
     }
 
+    /*<article class="col-lg-2 col-md-4 col-sm-4 col-8 cardsProductos">
+    <div class="card text-center bg-transparent cardCarrito">
+        <div class="card">
+            <a href="../vistas/producto.html?id=${prod.code}" id="elegirProducto"><img class="card-img-top cardImgBorder cardImgCarrito" src="../assets/${prod.nombreImg}.jpg" alt="${prod.nombre}"></a>
+        </div>
+        <div class="card-body cardBorder text-center text-dark pt-5 cardFondo lh-lg cardTextCarrito">
+            <h4 class="card-title fs-3">${prod.nombre}</h4>
+            <p class="card-text fs-4">$ ${prod.precio}</p>
+        </div>
+    </div>
+</article>*/
     obtenerDeStorage() {
         let index = 0;
         let obj = JSON.parse(localStorage.getItem("carrito"))
