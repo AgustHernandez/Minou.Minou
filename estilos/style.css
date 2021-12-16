@@ -465,6 +465,11 @@ input:checked + .slider .dolares {
     width: auto;
     height: auto; }
 
+.trashCarrito {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
 .piePag {
   background-image: linear-gradient(to right, #BF846F, #8C5346); }
   .piePag .row {
